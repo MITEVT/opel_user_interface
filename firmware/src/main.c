@@ -1,5 +1,4 @@
 #include "board.h"
-#include "stepperMotor.h"
 
 // -------------------------------------------------------------
 // Macro Definitions
@@ -20,6 +19,7 @@ static CCAN_MSG_OBJ_T _rx_buffer[BUFFER_SIZE]; 	// Underlying array used in ring
 
 static char str[100];							// Used for composing UART messages
 static uint8_t uart_rx_buffer[BUFFER_SIZE]; 	// UART received message buffer
+static uint8_t uart_tx_buffer[BUFFER_SIZE];
 
 static bool can_error_flag;
 static uint32_t can_error_info;
@@ -79,8 +79,14 @@ int main(void)
 {
 
 	//---------------
+	// Initialize UART Communication
+	Board_UART_Init(UART_BAUD_RATE);
+	Board_UART_Println("Started up");
+
+	//---------------
 	// Initialize SysTick Timer to generate millisecond count
 	if (Board_SysTick_Init()) {
+		Board_UART_Println("Failed to Initialize SysTick. ");
 		// Unrecoverable Error. Hang.
 		while(1);
 	}
@@ -90,11 +96,20 @@ int main(void)
 	Board_LEDs_Init();
 	Board_LED_On(LED0);
 
-	//---------------
-	// Initialize UART Communication
-	Board_UART_Init(UART_BAUD_RATE);
-	Board_UART_Println("Started up");
-
+	//Initialize SSP
+	Board_SPI_Init();
+//	Board_UART_Println("SPI pins set");
+	Chip_SSP_Init(LPC_SSP);
+//	Board_UART_Println("SSP initialized");
+	Chip_SSP_SetBitRate(LPC_SSP, 30000);
+	
+//	Board_UART_Println("Chip SSP set up");
+	Chip_SSP_SetFormat(LPC_SSP, SSP_DATA_BITS, SSP_FRAMEFORMAT_SPI, SSP_CLOCK_MODE0);
+	Chip_SSP_SetMaster(LPC_SSP, SSP_MODE_TEST);
+	Chip_SSP_Enable(LPC_SSP);
+//	Board_UART_Println("SSP Buffer set up");
+	SSP_Buffer_Init();
+	
 	//---------------
 	// Initialize CAN  and CAN Ring Buffer
 
@@ -126,12 +141,10 @@ int main(void)
 	*/
 
 	msg_obj.msgobj = 1;
-	msg_obj.mode_id = 0x700;
-	msg_obj.mask = 0x7FC;
+	msg_obj.mode_id = 0x000;
+	msg_obj.mask = 0x000;
 	LPC_CCAN_API->config_rxmsgobj(&msg_obj);
 
-
-	
 	/* [Tutorial] How do I send a CAN Message?
 
 		There are 32 Message Objects in the CAN Peripherals Message RAM.
@@ -151,61 +164,27 @@ int main(void)
 		LPC_CCAN_API->can_transmit(&msg_obj);
 
 	*/
-
 	can_error_flag = false;
 	can_error_info = 0;
-
-	Board_UART_Print("Initializing\r\n");
+	int i;
 	
-	STEPPER_MOTOR_T vgauge;
-	vgauge.ports[0] = 2;
-	vgauge.ports[1] = 3;
-	vgauge.ports[2] = 2;
-	vgauge.ports[3] = 2;
-	vgauge.pins[0] = 2;
-	vgauge.pins[1] = 0;
-	vgauge.pins[2] = 7;
-	vgauge.pins[3] = 8;
-	vgauge.step_per_rotation = 640;
-	vgauge.step_delay = 2;
-	Stepper_Init(&vgauge);
-	Stepper_ZeroPosition(&vgauge, msTicks);	
-
-	Chip_IOCON_PinMuxSet(LPC_IOCON, IOCON_PIO1_10, IOCON_DIGMODE_EN);
-	STEPPER_MOTOR_T tgauge;
-	tgauge.ports[0] = 2;
-	tgauge.ports[1] = 1;
-	tgauge.ports[2] = 3;
-	tgauge.ports[3] = 1;
-	tgauge.pins[0] = 11;
-	tgauge.pins[1] = 5;
-	tgauge.pins[2] = 2;
-	tgauge.pins[3] = 10;
-	tgauge.step_per_rotation = 640;
-	tgauge.step_delay = 2;
-	Stepper_Init(&tgauge);
-	Stepper_ZeroPosition(&tgauge, msTicks);
-	
-	Stepper_Step(&vgauge, msTicks);
-	Stepper_Step(&tgauge, msTicks);
 
 
-	while (1) {
+	while(1) {
+		uart_tx_buffer = [0x12];
+		Board_UART_SendBlocking(uart_tx_buffer, BUFFER_SIZE);
+
+
 		if (!RingBuffer_IsEmpty(&can_rx_buffer)) {
 			CCAN_MSG_OBJ_T temp_msg;
 			RingBuffer_Pop(&can_rx_buffer, &temp_msg);
-			
-			if (temp_msg.mode_id==0x703){
-				int vel = (temp_msg.data_16[0]*60*22*22)/(7*12*5280); 
-				int vpospercent = vel*100/110;
-				Stepper_SetPosition(&vgauge, vpospercent, msTicks); 
-			}
+			Board_UART_Print("Received Message ID: 0x");
+			itoa(temp_msg.mode_id, str, 16);
+			Board_UART_Println(str);
 
-			if (temp_msg.mode_id==0x700){
-				int throt = temp_msg.data_16[0];
-				int tpospercent = throt*640/6535;
-				Stepper_SetPosition(&tgauge,tpospercent,msTicks);	
-			}
+			Board_UART_Print("\t0x");
+			itoa(temp_msg.data_16[0], str, 16);
+			Board_UART_Println(str);
 
 		}	
 
@@ -216,10 +195,61 @@ int main(void)
 			Board_UART_Println(str);
 		}
 
-		Stepper_Step(&vgauge, msTicks);
-		
-		Stepper_Step(&tgauge, msTicks);
-		
-	
+		uint8_t count;
+
+		if ((Board_UART_Read(uart_rx_buffer, BUFFER_SIZE)) != 0) {
+			uint8_t count = Board_UART_Read(uart_rx_buffer, BUFFER_SIZE);
+			Board_UART_SendBlocking(uart_rx_buffer, count); // Echo user input
+			switch (uart_rx_buffer[0]) {
+				case 'a':
+					Board_UART_Println("Sending CAN with ID: 0x600");
+					msg_obj.msgobj = 2;
+					msg_obj.mode_id = 0x703;
+					msg_obj.dlc = 2;
+					msg_obj.data_16[0] = 300;
+					LPC_CCAN_API->can_transmit(&msg_obj);
+					break;
+				case 'b':
+					Board_UART_Println("Sending CAN with ID: 0x600");
+					msg_obj.msgobj = 2;
+					msg_obj.mode_id = 0x703;
+					msg_obj.dlc = 2;
+					msg_obj.data_16[0] = 600;
+					LPC_CCAN_API->can_transmit(&msg_obj);
+					break;
+				case 'c':
+					Board_UART_Println("Sending CAN with ID: 0x600");
+					msg_obj.msgobj = 2;
+					msg_obj.mode_id = 0x703;
+					msg_obj.dlc = 2;
+					msg_obj.data_16[0] = 0;
+					LPC_CCAN_API->can_transmit(&msg_obj);
+					break;
+				case 'd':
+					msg_obj.msgobj = 2;
+					msg_obj.mode_id = 0x700;
+					msg_obj.dlc = 2;
+					msg_obj.data_16[0] = 0;
+					LPC_CCAN_API->can_transmit(&msg_obj);
+					break;
+				case 'e':
+					msg_obj.msgobj = 2;
+					msg_obj.mode_id = 0x700;
+					msg_obj.dlc = 2;
+					msg_obj.data_16[0] = 32000;
+					LPC_CCAN_API->can_transmit(&msg_obj);
+					break;
+				case 'f':
+					msg_obj.msgobj = 2;
+					msg_obj.mode_id = 0x700;
+					msg_obj.dlc = 2;
+					msg_obj.data_16[0] = 65500;
+					LPC_CCAN_API->can_transmit(&msg_obj);
+					break;
+				default:
+					Board_UART_Println("Invalid Command");
+					break;
+			}
 		}
-}	
+	}
+}
