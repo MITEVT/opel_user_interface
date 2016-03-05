@@ -1,0 +1,7 @@
+stepperMotor.c:4:6:Stepper_StepCases	12	static
+stepperMotor.c:33:6:Stepper_Init	16	static
+stepperMotor.c:54:6:Stepper_ZeroPosition	8	static
+stepperMotor.c:64:17:Stepper_Spin	8	static
+stepperMotor.c:49:6:Stepper_SetPosition	24	static
+stepperMotor.c:60:6:Stepper_HomePosition	16	static
+stepperMotor.c:75:17:Stepper_Step	24	static

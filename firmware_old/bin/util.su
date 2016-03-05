@@ -1,0 +1,2 @@
+util.c:3:6:__reverse	0	static
+util.c:14:7:itoa	40	static
