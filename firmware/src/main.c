@@ -166,26 +166,86 @@ int main(void)
 	*/
 	can_error_flag = false;
 	can_error_info = 0;
-	int i;
+	int i=0;
+	int length;
 	
 
 
 	while(1) {
-		uart_tx_buffer = [0x12];
-		Board_UART_SendBlocking(uart_tx_buffer, BUFFER_SIZE);
-
+//		if (i==0){
+//			Board_UART_Print("0x");		
+//			Board_UART_PrintNum(0x506,16,true);
+//			Board_UART_Print("0b");
+//			Board_UART_PrintNum(0b1,2, true);
+//			break;
+//		}
 
 		if (!RingBuffer_IsEmpty(&can_rx_buffer)) {
 			CCAN_MSG_OBJ_T temp_msg;
 			RingBuffer_Pop(&can_rx_buffer, &temp_msg);
-			Board_UART_Print("Received Message ID: 0x");
+			Board_UART_Print("Message ID: 0x");
 			itoa(temp_msg.mode_id, str, 16);
-			Board_UART_Println(str);
+			Board_UART_Print(str);
+			
+			if (temp_msg.mode_id==(0x704||0x705) {	//velocity sensors
+				length = 16
+				Board_UART_Print(" Length: ")
+				Board_UART_PrintNum(length,10,false)
+			}
+			
+			if (temp_msg.mode_id==(0x305) {	  //PDM packet
+				length = 5
+				Board_UART_Print(" Length: ")
+				Board_UART_PrintNum(length,10,false)
+			}
 
-			Board_UART_Print("\t0x");
-			itoa(temp_msg.data_16[0], str, 16);
-			Board_UART_Println(str);
+			if (temp_msg.mode_id==(0x506) {   //error channel
+				length = 20
+				Board_UART_Print(" Length: ")
+				Board_UART_PrintNum(length,10,false)
+			}
+			
+			if (temp_msg.mode_id==(0x301) {	  //TI packet
+				length = 24
+				Board_UART_Print(" Length: ")
+				Board_UART_PrintNum(length,10,false)
+			}
 
+			if (temp_msg.mode_id==(0x505) {	  //DI packet
+				length = 32
+				Board_UART_Print(" Length: ")
+				Board_UART_PrintNum(length,10,false)
+			}
+
+			if (temp_msg.mode_id==(0x6F7) {   //precharge status
+				length = 8
+				Board_UART_Print(" Length: ")
+				Board_UART_PrintNum(length,10,false)
+			}
+			
+			if (temp_msg.mode_id==(0x6F9) {   //cell temps
+				length = 56
+				Board_UART_Print(" Length: ")
+				Board_UART_PrintNum(length,10,false)
+			}
+
+			if (temp_msg.mode_id==(0x6FD) {   //extended pack status
+				length = 48
+				Board_UART_Print(" Length: ")
+				Board_UART_PrintNum(length,10,false)
+			}
+
+			if (temp_msg.mode_id==(0x6F4 || 0x6F5 || 0x6F6 || 0x6F8 || 0x6FA || 0x6FB || 0x6FC) {  
+				//pack charge, pack charge misbalance, charging control info, cell voltages, battery current voltage, overall pack status, fan info
+				length = 64
+				Board_UART_Print(" Length: ")
+				Board_UART_PrintNum(length,10,false)
+			}
+
+			Board_UART_Print(" Data: ");
+			itoa(temp_msg.data_16[0], str, length);
+			Board_UART_Println(str);
+			
 		}	
 
 		if (can_error_flag) {
@@ -197,9 +257,8 @@ int main(void)
 
 		uint8_t count;
 
-		if ((Board_UART_Read(uart_rx_buffer, BUFFER_SIZE)) != 0) {
-			uint8_t count = Board_UART_Read(uart_rx_buffer, BUFFER_SIZE);
-			Board_UART_SendBlocking(uart_rx_buffer, count); // Echo user input
+		if ((count = Board_UART_Read(uart_rx_buffer, BUFFER_SIZE)) != 0) {
+			//Board_UART_SendBlocking(uart_rx_buffer, count); // Echo user input
 			switch (uart_rx_buffer[0]) {
 				case 'a':
 					Board_UART_Println("Sending CAN with ID: 0x600");
@@ -245,6 +304,9 @@ int main(void)
 					msg_obj.dlc = 2;
 					msg_obj.data_16[0] = 65500;
 					LPC_CCAN_API->can_transmit(&msg_obj);
+					break;
+				case 'g':
+					Board_UART_PrintNum(0xFFF, 16, true);
 					break;
 				default:
 					Board_UART_Println("Invalid Command");

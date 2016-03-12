@@ -1644,9 +1644,8 @@ Discarded input sections
  .text          0x00000000        0x0 bin/board.o
  .data          0x00000000        0x0 bin/board.o
  .bss           0x00000000        0x0 bin/board.o
- .text.Board_UART_PrintNum
-                0x00000000       0x2c bin/board.o
- .bss.str.6455  0x00000000       0x20 bin/board.o
+ .text.Board_UART_SendBlocking
+                0x00000000       0x14 bin/board.o
  .debug_macro   0x00000000      0x820 bin/board.o
  .debug_macro   0x00000000       0x22 bin/board.o
  .debug_macro   0x00000000       0x44 bin/board.o
@@ -1972,7 +1971,7 @@ LOAD /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6
 LOAD /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libc.a
 END GROUP
 
-.text           0x00000000      0xe5e
+.text           0x00000000      0xe9e
  *(.isr_vector)
  .isr_vector    0x00000000       0xd0 bin/startup_LPC11xx.o
                 0x00000000                __isr_vector
@@ -2093,49 +2092,49 @@ END GROUP
  .text.Board_UART_Println
                 0x00000590       0x14 bin/board.o
                 0x00000590                Board_UART_Println
- .text.Board_UART_SendBlocking
-                0x000005a4       0x14 bin/board.o
-                0x000005a4                Board_UART_SendBlocking
+ .text.Board_UART_PrintNum
+                0x000005a4       0x2c bin/board.o
+                0x000005a4                Board_UART_PrintNum
  .text.Board_UART_Read
-                0x000005b8       0x18 bin/board.o
-                0x000005b8                Board_UART_Read
+                0x000005d0       0x18 bin/board.o
+                0x000005d0                Board_UART_Read
  .text.CAN_baudrate_calculate
-                0x000005d0       0x7c bin/board.o
-                0x000005d0                CAN_baudrate_calculate
+                0x000005e8       0x7c bin/board.o
+                0x000005e8                CAN_baudrate_calculate
  .text.Board_CAN_Init
-                0x0000064c       0x48 bin/board.o
-                0x0000064c                Board_CAN_Init
- .text.CAN_tx   0x00000694        0x2 bin/main.o
-                0x00000694                CAN_tx
- *fill*         0x00000696        0x2 
+                0x00000664       0x48 bin/board.o
+                0x00000664                Board_CAN_Init
+ .text.CAN_tx   0x000006ac        0x2 bin/main.o
+                0x000006ac                CAN_tx
+ *fill*         0x000006ae        0x2 
  .text.CAN_error
-                0x00000698       0x14 bin/main.o
-                0x00000698                CAN_error
- .text.CAN_rx   0x000006ac       0x30 bin/main.o
-                0x000006ac                CAN_rx
+                0x000006b0       0x14 bin/main.o
+                0x000006b0                CAN_error
+ .text.CAN_rx   0x000006c4       0x30 bin/main.o
+                0x000006c4                CAN_rx
  .text.startup.main
-                0x000006dc      0x220 bin/main.o
-                0x000006dc                main
+                0x000006f4      0x248 bin/main.o
+                0x000006f4                main
  .text.SystemInit
-                0x000008fc       0x8c bin/sysinit.o
-                0x000008fc                SystemInit
- .text          0x00000988       0x14 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
-                0x00000988                __gnu_thumb1_case_uqi
- .text          0x0000099c      0x120 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
-                0x0000099c                __udivsi3
-                0x0000099c                __aeabi_uidiv
-                0x00000aa8                __aeabi_uidivmod
- .text          0x00000abc      0x1e0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_divsi3.o)
-                0x00000abc                __aeabi_idiv
-                0x00000abc                __divsi3
-                0x00000c88                __aeabi_idivmod
- .text          0x00000c9c        0x4 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
-                0x00000c9c                __aeabi_ldiv0
-                0x00000c9c                __aeabi_idiv0
- .text.memcpy   0x00000ca0       0x7c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
-                0x00000ca0                memcpy
- .text.strlen   0x00000d1c       0x68 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
-                0x00000d1c                strlen
+                0x0000093c       0x8c bin/sysinit.o
+                0x0000093c                SystemInit
+ .text          0x000009c8       0x14 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
+                0x000009c8                __gnu_thumb1_case_uqi
+ .text          0x000009dc      0x120 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
+                0x000009dc                __udivsi3
+                0x000009dc                __aeabi_uidiv
+                0x00000ae8                __aeabi_uidivmod
+ .text          0x00000afc      0x1e0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_divsi3.o)
+                0x00000afc                __aeabi_idiv
+                0x00000afc                __divsi3
+                0x00000cc8                __aeabi_idivmod
+ .text          0x00000cdc        0x4 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
+                0x00000cdc                __aeabi_ldiv0
+                0x00000cdc                __aeabi_idiv0
+ .text.memcpy   0x00000ce0       0x7c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
+                0x00000ce0                memcpy
+ .text.strlen   0x00000d5c       0x68 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
+                0x00000d5c                strlen
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -2150,49 +2149,50 @@ END GROUP
  *(.dtors)
  *(.rodata*)
  .rodata.wdtOSCRate
-                0x00000d84       0x40 bin/clock_11xx.o
+                0x00000dc4       0x40 bin/clock_11xx.o
  .rodata.digits.4175
-                0x00000dc4       0x11 bin/util.o
- *fill*         0x00000dd5        0x3 
+                0x00000e04       0x11 bin/util.o
+ *fill*         0x00000e15        0x3 
  .rodata.OscRateIn
-                0x00000dd8        0x4 bin/board.o
-                0x00000dd8                OscRateIn
+                0x00000e18        0x4 bin/board.o
+                0x00000e18                OscRateIn
  .rodata.str1.1
-                0x00000ddc        0x3 bin/board.o
+                0x00000e1c        0x3 bin/board.o
  .rodata.str1.1
-                0x00000ddf       0x7f bin/main.o
+                0x00000e1f       0x7f bin/main.o
+                                 0x85 (size before relaxing)
  *(.eh_frame*)
 
-.glue_7         0x00000e60        0x0
+.glue_7         0x00000ea0        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x00000e60        0x0
+.glue_7t        0x00000ea0        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x00000e60        0x0
+.vfp11_veneer   0x00000ea0        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x00000e60        0x0
+.v4_bx          0x00000ea0        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x00000e60        0x0
+.iplt           0x00000ea0        0x0
  .iplt          0x00000000        0x0 bin/startup_LPC11xx.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x00000e60                __exidx_start = .
+                0x00000ea0                __exidx_start = .
 
-.ARM.exidx      0x00000e60        0x8
+.ARM.exidx      0x00000ea0        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
  .ARM.exidx.isr_vector
-                0x00000e60        0x8 bin/startup_LPC11xx.o
-                0x00000e68                __exidx_end = .
-                0x00000e68                __etext = .
+                0x00000ea0        0x8 bin/startup_LPC11xx.o
+                0x00000ea8                __exidx_end = .
+                0x00000ea8                __etext = .
 
-.rel.dyn        0x00000e68        0x0
+.rel.dyn        0x00000ea8        0x0
  .rel.iplt      0x00000000        0x0 bin/startup_LPC11xx.o
 
-.data           0x10000100        0x4 load address 0x00000e68
+.data           0x10000100        0x4 load address 0x00000ea8
                 0x10000100                __data_start__ = .
  *(vtable)
  *(.data*)
@@ -2217,50 +2217,49 @@ END GROUP
                 0x10000104                . = ALIGN (0x4)
                 0x10000104                __data_end__ = .
 
-.igot.plt       0x10000104        0x0 load address 0x00000e6c
+.igot.plt       0x10000104        0x0 load address 0x00000eac
  .igot.plt      0x00000000        0x0 bin/startup_LPC11xx.o
 
-.bss            0x10000108      0x370 load address 0x00000e70
+.bss            0x10000108      0x388 load address 0x00000eb0
                 0x10000108                . = ALIGN (0x4)
                 0x10000108                __bss_start__ = .
  *(.bss*)
  .bss.SSP_Rx_Buf
                 0x10000108      0x100 bin/board.o
+ .bss.str.6455  0x10000208       0x20 bin/board.o
  .bss.SSP_Tx_Buf
-                0x10000208      0x100 bin/board.o
+                0x10000228      0x100 bin/board.o
  .bss.uart_rx_buffer
-                0x10000308        0x8 bin/main.o
+                0x10000328        0x8 bin/main.o
  .bss.can_error_info
-                0x10000310        0x4 bin/main.o
+                0x10000330        0x4 bin/main.o
  .bss.can_error_flag
-                0x10000314        0x1 bin/main.o
- *fill*         0x10000315        0x3 
+                0x10000334        0x1 bin/main.o
+ *fill*         0x10000335        0x3 
  .bss.can_rx_buffer
-                0x10000318       0x14 bin/main.o
- *fill*         0x1000032c        0x4 
- .bss.msg_obj   0x10000330       0x18 bin/main.o
+                0x10000338       0x14 bin/main.o
+ *fill*         0x1000034c        0x4 
+ .bss.msg_obj   0x10000350       0x18 bin/main.o
  .bss._rx_buffer
-                0x10000348       0xc0 bin/main.o
- .bss.str       0x10000408       0x64 bin/main.o
- .bss.uart_tx_buffer
-                0x1000046c        0x8 bin/main.o
+                0x10000368       0xc0 bin/main.o
+ .bss.str       0x10000428       0x64 bin/main.o
  *(COMMON)
- COMMON         0x10000474        0x4 bin/board.o
-                0x10000474                msTicks
-                0x10000478                . = ALIGN (0x4)
-                0x10000478                __bss_end__ = .
+ COMMON         0x1000048c        0x4 bin/board.o
+                0x1000048c                msTicks
+                0x10000490                . = ALIGN (0x4)
+                0x10000490                __bss_end__ = .
 
-.heap           0x10000478     0x1000
-                0x10000478                __end__ = .
-                0x10000478                PROVIDE (end, .)
+.heap           0x10000490     0x1000
+                0x10000490                __end__ = .
+                0x10000490                PROVIDE (end, .)
  *(.heap*)
- .heap          0x10000478     0x1000 bin/startup_LPC11xx.o
-                0x10000478                __HeapBase
-                0x10001478                __HeapLimit = .
+ .heap          0x10000490     0x1000 bin/startup_LPC11xx.o
+                0x10000490                __HeapBase
+                0x10001490                __HeapLimit = .
 
-.stack_dummy    0x10000478      0x200
+.stack_dummy    0x10000490      0x200
  *(.stack*)
- .stack         0x10000478      0x200 bin/startup_LPC11xx.o
+ .stack         0x10000490      0x200 bin/startup_LPC11xx.o
                 0x10002000                __StackTop = (ORIGIN (RAM) + 0x1f00)
                 0x10001e00                __StackLimit = (__StackTop - SIZEOF (.stack_dummy))
                 0x10002000                PROVIDE (__stack, __StackTop)
@@ -2317,7 +2316,7 @@ OUTPUT(bin/BCM.elf elf32-littlearm)
  .comment       0x00000000       0x71 bin/main.o
  .comment       0x00000000       0x71 bin/sysinit.o
 
-.debug_line     0x00000000     0x2a70
+.debug_line     0x00000000     0x2a84
  .debug_line    0x00000000       0x8c bin/startup_LPC11xx.o
  .debug_line    0x0000008c      0x2eb bin/chip_11xx.o
  .debug_line    0x00000377      0x3e4 bin/clock_11xx.o
@@ -2327,10 +2326,10 @@ OUTPUT(bin/BCM.elf elf32-littlearm)
  .debug_line    0x00001648      0x569 bin/uart_11xx.o
  .debug_line    0x00001bb1      0x1ee bin/util.o
  .debug_line    0x00001d9f      0x559 bin/board.o
- .debug_line    0x000022f8      0x480 bin/main.o
- .debug_line    0x00002778      0x2f8 bin/sysinit.o
+ .debug_line    0x000022f8      0x494 bin/main.o
+ .debug_line    0x0000278c      0x2f8 bin/sysinit.o
 
-.debug_info     0x00000000     0x79a9
+.debug_info     0x00000000     0x79d8
  .debug_info    0x00000000       0x93 bin/startup_LPC11xx.o
  .debug_info    0x00000093       0xe7 bin/chip_11xx.o
  .debug_info    0x0000017a      0x8fa bin/clock_11xx.o
@@ -2340,10 +2339,10 @@ OUTPUT(bin/BCM.elf elf32-littlearm)
  .debug_info    0x00003690     0x125b bin/uart_11xx.o
  .debug_info    0x000048eb      0x1a3 bin/util.o
  .debug_info    0x00004a8e     0x1a06 bin/board.o
- .debug_info    0x00006494      0xfe3 bin/main.o
- .debug_info    0x00007477      0x532 bin/sysinit.o
+ .debug_info    0x00006494     0x1012 bin/main.o
+ .debug_info    0x000074a6      0x532 bin/sysinit.o
 
-.debug_abbrev   0x00000000     0x1752
+.debug_abbrev   0x00000000     0x175d
  .debug_abbrev  0x00000000       0x12 bin/startup_LPC11xx.o
  .debug_abbrev  0x00000012       0x9b bin/chip_11xx.o
  .debug_abbrev  0x000000ad      0x23f bin/clock_11xx.o
@@ -2353,8 +2352,8 @@ OUTPUT(bin/BCM.elf elf32-littlearm)
  .debug_abbrev  0x00000a59      0x31d bin/uart_11xx.o
  .debug_abbrev  0x00000d76       0xf4 bin/util.o
  .debug_abbrev  0x00000e6a      0x46f bin/board.o
- .debug_abbrev  0x000012d9      0x38b bin/main.o
- .debug_abbrev  0x00001664       0xee bin/sysinit.o
+ .debug_abbrev  0x000012d9      0x396 bin/main.o
+ .debug_abbrev  0x0000166f       0xee bin/sysinit.o
 
 .debug_aranges  0x00000000      0x350
  .debug_aranges
@@ -2380,7 +2379,7 @@ OUTPUT(bin/BCM.elf elf32-littlearm)
  .debug_aranges
                 0x00000330       0x20 bin/sysinit.o
 
-.debug_ranges   0x00000000      0x778
+.debug_ranges   0x00000000      0x798
  .debug_ranges  0x00000000       0x20 bin/startup_LPC11xx.o
  .debug_ranges  0x00000020       0x10 bin/chip_11xx.o
  .debug_ranges  0x00000030       0x58 bin/clock_11xx.o
@@ -2390,8 +2389,8 @@ OUTPUT(bin/BCM.elf elf32-littlearm)
  .debug_ranges  0x00000440      0x1a8 bin/uart_11xx.o
  .debug_ranges  0x000005e8       0x18 bin/util.o
  .debug_ranges  0x00000600       0xf0 bin/board.o
- .debug_ranges  0x000006f0       0x78 bin/main.o
- .debug_ranges  0x00000768       0x10 bin/sysinit.o
+ .debug_ranges  0x000006f0       0x98 bin/main.o
+ .debug_ranges  0x00000788       0x10 bin/sysinit.o
 
 .debug_macro    0x00000000     0x17ed
  .debug_macro   0x00000000      0x160 bin/chip_11xx.o
@@ -2438,7 +2437,7 @@ OUTPUT(bin/BCM.elf elf32-littlearm)
  .debug_str     0x0000ae3f      0xd97 bin/board.o
                                0xaa84 (size before relaxing)
  .debug_str     0x0000bbd6       0xf7 bin/main.o
-                               0xa193 (size before relaxing)
+                               0xa18f (size before relaxing)
  .debug_str     0x0000bccd      0x2db bin/sysinit.o
                                0x7780 (size before relaxing)
 
@@ -2458,7 +2457,7 @@ OUTPUT(bin/BCM.elf elf32-littlearm)
  .debug_frame   0x000008b0       0x2c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
  .debug_frame   0x000008dc       0x28 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
 
-.debug_loc      0x00000000     0x2b2a
+.debug_loc      0x00000000     0x2b3f
  .debug_loc     0x00000000      0x16c bin/clock_11xx.o
  .debug_loc     0x0000016c      0x46f bin/gpio_11xx_2.o
  .debug_loc     0x000005db      0x61c bin/ring_buffer.o
@@ -2466,8 +2465,8 @@ OUTPUT(bin/BCM.elf elf32-littlearm)
  .debug_loc     0x00001a9b      0xab7 bin/uart_11xx.o
  .debug_loc     0x00002552      0x172 bin/util.o
  .debug_loc     0x000026c4      0x39f bin/board.o
- .debug_loc     0x00002a63       0x83 bin/main.o
- .debug_loc     0x00002ae6       0x44 bin/sysinit.o
+ .debug_loc     0x00002a63       0x98 bin/main.o
+ .debug_loc     0x00002afb       0x44 bin/sysinit.o
 
 Cross Reference Table
 
@@ -2487,12 +2486,12 @@ Board_UART_Init                                   bin/board.o
 Board_UART_Print                                  bin/board.o
                                                   bin/main.o
 Board_UART_PrintNum                               bin/board.o
+                                                  bin/main.o
 Board_UART_Println                                bin/board.o
                                                   bin/main.o
 Board_UART_Read                                   bin/board.o
                                                   bin/main.o
 Board_UART_SendBlocking                           bin/board.o
-                                                  bin/main.o
 Brusa_Decode                                      bin/brusa.o
 Brusa_DecodeActI                                  bin/brusa.o
 Brusa_DecodeActII                                 bin/brusa.o
