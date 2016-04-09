@@ -187,56 +187,57 @@ int main(void)
 			itoa(temp_msg.mode_id, str, 16);
 			Board_UART_Print(str);
 			
-			if (temp_msg.mode_id==(0x704||0x705) {	//velocity sensors
-				length = 16
+
+			if (temp_msg.mode_id==0x705) {	//MI packet
+				length = 18
 				Board_UART_Print(" Length: ")
 				Board_UART_PrintNum(length,10,false)
 			}
 			
-			if (temp_msg.mode_id==(0x305) {	  //PDM packet
+			if (temp_msg.mode_id==0x305) {	  //PDM packet
 				length = 5
 				Board_UART_Print(" Length: ")
 				Board_UART_PrintNum(length,10,false)
 			}
 
-			if (temp_msg.mode_id==(0x506) {   //error channel
+			if (temp_msg.mode_id==0x506) {   //error channel
 				length = 20
 				Board_UART_Print(" Length: ")
 				Board_UART_PrintNum(length,10,false)
 			}
 			
-			if (temp_msg.mode_id==(0x301) {	  //TI packet
+			if (temp_msg.mode_id==0x301) {	  //TI packet
 				length = 24
 				Board_UART_Print(" Length: ")
 				Board_UART_PrintNum(length,10,false)
 			}
 
-			if (temp_msg.mode_id==(0x505) {	  //DI packet
+			if (temp_msg.mode_id==0x505) {	  //DI packet
 				length = 32
 				Board_UART_Print(" Length: ")
 				Board_UART_PrintNum(length,10,false)
 			}
 
-			if (temp_msg.mode_id==(0x6F7) {   //precharge status
+			if (temp_msg.mode_id==0x6F7) {   //precharge status
 				length = 8
 				Board_UART_Print(" Length: ")
 				Board_UART_PrintNum(length,10,false)
 			}
 			
-			if (temp_msg.mode_id==(0x6F9) {   //cell temps
+			if (temp_msg.mode_id==0x6F9) {   //cell temps
 				length = 56
 				Board_UART_Print(" Length: ")
 				Board_UART_PrintNum(length,10,false)
 			}
 
-			if (temp_msg.mode_id==(0x6FD) {   //extended pack status
+			if (temp_msg.mode_id==0x6FD) {   //extended pack status
 				length = 48
 				Board_UART_Print(" Length: ")
 				Board_UART_PrintNum(length,10,false)
 			}
 
-			if (temp_msg.mode_id==(0x6F4 || 0x6F5 || 0x6F6 || 0x6F8 || 0x6FA || 0x6FB || 0x6FC) {  
-				//pack charge, pack charge misbalance, charging control info, cell voltages, battery current voltage, overall pack status, fan info
+			if (temp_msg.mode_id==(0x6F5 || 0x6F6 || 0x6F8 || 0x6FB)) {  
+				//pack charge misbalance, charging control info, cell voltages, overall pack status
 				length = 64
 				Board_UART_Print(" Length: ")
 				Board_UART_PrintNum(length,10,false)
