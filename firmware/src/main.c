@@ -12,6 +12,7 @@
 // Static Variable Declaration
 
 extern volatile uint32_t msTicks;
+static uint32_t lastPrint;
 
 static CCAN_MSG_OBJ_T msg_obj; 					// Message Object data structure for manipulating CAN messages
 static RINGBUFF_T can_rx_buffer;				// Ring Buffer for storing received CAN messages
@@ -24,6 +25,17 @@ static uint8_t uart_tx_buffer[BUFFER_SIZE];
 static bool can_error_flag;
 static uint32_t can_error_info;
 
+uint32_t velocity_1=0;
+uint32_t velocity_2=0;
+uint32_t acc_val=0;
+uint32_t brake_val=0;
+char *key_ignition="NONE";
+char *drive_status="NONE";
+char *shutdown_ok ="NONE";
+uint32_t m_current=0;
+uint32_t m_rpm=0;
+uint32_t m_voltage=0;
+uint32_t m_torque=0;
 // -------------------------------------------------------------
 // Helper Functions
 
@@ -35,7 +47,70 @@ void _delay(uint32_t ms) {
 	uint32_t curTicks = msTicks;
 	while ((msTicks - curTicks) < ms);
 }
+void drive_info(CCAN_MSG_OBJ_T msg) {
+	if (msg.data_16[0]==0x0020) {
+		key_ignition ="RUN";
+	}
+	if (msg.data_16[0]==0x0040) {
+		key_ignition = "START";
+	}
+	if (msg.data_16[1]==0x0000){
+		drive_status = "PARKED";
+	}
+	if (msg.data_16[1]==0X00F0){
+		drive_status = "FORWARD";
+	}
+	if (msg.data_16[1]==0X0030){
+		drive_status = "REVERSE";
+	}
+	if (msg.data_16[1]==0X0F00){
+		drive_status = "SHUTDOWN_IMPENDING";
+	}
+	if (msg.data_16[1]==0X0300){
+		drive_status = "INIT";
+	}
+	if (msg.data_16[1]==0XF000){
+		drive_status = "CHARGE";
+	}
+	if (msg.data_16[1]==0X3000){
+		drive_status= "OFF";
+	}
+}
 
+void throttle_info(CCAN_MSG_OBJ_T msg) {
+	acc_val = msg.data_16[0];
+	brake_val = msg.data_16[1];
+}	
+
+void motor_info(CCAN_MSG_OBJ_T msg) {
+	if (msg.data_16[0]==0) {
+		shutdown_ok = "OK";
+	}
+	if (msg.data_16[0]==1) {
+		shutdown_ok = "NOT_OK";
+	}
+	m_current = msg.data_16[1];
+	m_rpm = msg.data_16[2];
+	m_voltage = msg.data_16[3];
+	m_torque = msg.data_16[4];
+}
+
+void car_status(void) {
+	Board_UART_Print("Key_Ignition: ");
+	Board_UART_Println(key_ignition);
+	Board_UART_Print("Drive_Status: ");
+	Board_UART_Println(drive_status);
+	Board_UART_Print("Throttle_Acc_Val: ");
+	Board_UART_PrintNum(acc_val,10,true);
+	Board_UART_Print("Throttle_Brake_Val: ");
+	Board_UART_PrintNum(brake_val,10,true); 
+	Board_UART_Print("Velocity_1: ");
+	Board_UART_PrintNum(velocity_1,10,true);
+	Board_UART_Print("Velocity_2: ");
+	Board_UART_PrintNum(velocity_2,10,true);
+	Board_UART_Print("Shutdown: ");
+	Board_UART_Println(shutdown_ok);
+}
 // -------------------------------------------------------------
 // CAN Driver Callback Functions
 
@@ -81,7 +156,7 @@ int main(void)
 	//---------------
 	// Initialize UART Communication
 	Board_UART_Init(UART_BAUD_RATE);
-	Board_UART_Println("Started up");
+	//Board_UART_Println("Started up");
 
 	//---------------
 	// Initialize SysTick Timer to generate millisecond count
@@ -97,18 +172,18 @@ int main(void)
 	Board_LED_On(LED0);
 
 	//Initialize SSP
-	Board_SPI_Init();
+//	Board_SPI_Init();
 //	Board_UART_Println("SPI pins set");
-	Chip_SSP_Init(LPC_SSP);
+//	Chip_SSP_Init(LPC_SSP);
 //	Board_UART_Println("SSP initialized");
-	Chip_SSP_SetBitRate(LPC_SSP, 30000);
+//	Chip_SSP_SetBitRate(LPC_SSP, 30000);
 	
 //	Board_UART_Println("Chip SSP set up");
-	Chip_SSP_SetFormat(LPC_SSP, SSP_DATA_BITS, SSP_FRAMEFORMAT_SPI, SSP_CLOCK_MODE0);
-	Chip_SSP_SetMaster(LPC_SSP, SSP_MODE_TEST);
-	Chip_SSP_Enable(LPC_SSP);
+//	Chip_SSP_SetFormat(LPC_SSP, SSP_DATA_BITS, SSP_FRAMEFORMAT_SPI, SSP_CLOCK_MODE0);
+//	Chip_SSP_SetMaster(LPC_SSP, SSP_MODE_TEST);
+//	Chip_SSP_Enable(LPC_SSP);
 //	Board_UART_Println("SSP Buffer set up");
-	SSP_Buffer_Init();
+//	SSP_Buffer_Init();
 	
 	//---------------
 	// Initialize CAN  and CAN Ring Buffer
@@ -141,7 +216,7 @@ int main(void)
 	*/
 
 	msg_obj.msgobj = 1;
-	msg_obj.mode_id = 0x000;
+	msg_obj.mode_id = 0x7F5;
 	msg_obj.mask = 0x000;
 	LPC_CCAN_API->config_rxmsgobj(&msg_obj);
 
@@ -166,88 +241,44 @@ int main(void)
 	*/
 	can_error_flag = false;
 	can_error_info = 0;
-	int i=0;
-	int length;
+	int dlen;
+	bool send = false;
+	msTicks = 1000;
+	lastPrint = msTicks;
 	
+	while (1) {
+		if(lastPrint < msTicks-1000){
+			lastPrint = msTicks;
+			car_status();
+		}
 
-
-	while(1) {
-//		if (i==0){
-//			Board_UART_Print("0x");		
-//			Board_UART_PrintNum(0x506,16,true);
-//			Board_UART_Print("0b");
-//			Board_UART_PrintNum(0b1,2, true);
-//			break;
-//		}
-
-		if (!RingBuffer_IsEmpty(&can_rx_buffer)) {
-			CCAN_MSG_OBJ_T temp_msg;
-			RingBuffer_Pop(&can_rx_buffer, &temp_msg);
-			Board_UART_Print("Message ID: 0x");
-			itoa(temp_msg.mode_id, str, 16);
-			Board_UART_Print(str);
-			
-
-			if (temp_msg.mode_id==0x705) {	//MI packet
-				length = 18
-				Board_UART_Print(" Length: ")
-				Board_UART_PrintNum(length,10,false)
-			}
-			
-			if (temp_msg.mode_id==0x305) {	  //PDM packet
-				length = 5
-				Board_UART_Print(" Length: ")
-				Board_UART_PrintNum(length,10,false)
-			}
-
-			if (temp_msg.mode_id==0x506) {   //error channel
-				length = 20
-				Board_UART_Print(" Length: ")
-				Board_UART_PrintNum(length,10,false)
-			}
-			
-			if (temp_msg.mode_id==0x301) {	  //TI packet
-				length = 24
-				Board_UART_Print(" Length: ")
-				Board_UART_PrintNum(length,10,false)
-			}
-
-			if (temp_msg.mode_id==0x505) {	  //DI packet
-				length = 32
-				Board_UART_Print(" Length: ")
-				Board_UART_PrintNum(length,10,false)
-			}
-
-			if (temp_msg.mode_id==0x6F7) {   //precharge status
-				length = 8
-				Board_UART_Print(" Length: ")
-				Board_UART_PrintNum(length,10,false)
-			}
-			
-			if (temp_msg.mode_id==0x6F9) {   //cell temps
-				length = 56
-				Board_UART_Print(" Length: ")
-				Board_UART_PrintNum(length,10,false)
-			}
-
-			if (temp_msg.mode_id==0x6FD) {   //extended pack status
-				length = 48
-				Board_UART_Print(" Length: ")
-				Board_UART_PrintNum(length,10,false)
-			}
-
-			if (temp_msg.mode_id==(0x6F5 || 0x6F6 || 0x6F8 || 0x6FB)) {  
-				//pack charge misbalance, charging control info, cell voltages, overall pack status
-				length = 64
-				Board_UART_Print(" Length: ")
-				Board_UART_PrintNum(length,10,false)
-			}
-
-			Board_UART_Print(" Data: ");
-			itoa(temp_msg.data_16[0], str, length);
-			Board_UART_Println(str);
-			
-		}	
+		if (send) {
+			if (!RingBuffer_IsEmpty(&can_rx_buffer)) {
+				CCAN_MSG_OBJ_T temp_msg;
+				RingBuffer_Pop(&can_rx_buffer, &temp_msg);
+				if (temp_msg.mode_id== 0x505) {		//driver interface
+					drive_info(temp_msg);
+				}
+				else if (temp_msg.mode_id==0x703) {	//velocity1
+					velocity_1 = temp_msg.data_16[0];
+				}
+				else if (temp_msg.mode_id==0x704) {	//velocity2
+					velocity_2 = temp_msg.data_16[0];
+				}
+				else if (temp_msg.mode_id==0x705) {	//motor interface 
+					motor_info(temp_msg);
+				}
+				else if (temp_msg.mode_id==0x301) {	//throttle interface   
+					throttle_info(temp_msg);
+				}
+				else if (temp_msg.mode_id==) {
+					  
+				}
+				else {
+					break;
+				}
+			}	
+		}
 
 		if (can_error_flag) {
 			can_error_flag = false;
@@ -261,58 +292,77 @@ int main(void)
 		if ((count = Board_UART_Read(uart_rx_buffer, BUFFER_SIZE)) != 0) {
 			//Board_UART_SendBlocking(uart_rx_buffer, count); // Echo user input
 			switch (uart_rx_buffer[0]) {
-				case 'a':
-					Board_UART_Println("Sending CAN with ID: 0x600");
+				case 'p':
+					Board_UART_Println("Sending CAN with ID: 0x305");
 					msg_obj.msgobj = 2;
-					msg_obj.mode_id = 0x703;
-					msg_obj.dlc = 2;
-					msg_obj.data_16[0] = 300;
+					msg_obj.mode_id = 0x305;
+					msg_obj.dlc = 5;
+					msg_obj.data_16[0] = 0x00;
+					msg_obj.data_16[1] = 0x01;
+					msg_obj.data_16[2] = 0x00;
+					msg_obj.data_16[3] = 0x01;
 					LPC_CCAN_API->can_transmit(&msg_obj);
 					break;
-				case 'b':
-					Board_UART_Println("Sending CAN with ID: 0x600");
+				case 'm':
+					Board_UART_Println("Sending CAN with ID: 0x705");
 					msg_obj.msgobj = 2;
-					msg_obj.mode_id = 0x703;
-					msg_obj.dlc = 2;
-					msg_obj.data_16[0] = 600;
+					msg_obj.mode_id = 0x705;
+					msg_obj.dlc = 7;
+					msg_obj.data_16[0] = 0x01;
+					msg_obj.data_16[1] = 0x13;
+					msg_obj.data_16[2] = 0x0111;
+					msg_obj.data_16[3] = 0x65;
 					LPC_CCAN_API->can_transmit(&msg_obj);
 					break;
-				case 'c':
-					Board_UART_Println("Sending CAN with ID: 0x600");
+				case 'v':
+					Board_UART_Println("Sending CAN with ID: 0x301");
 					msg_obj.msgobj = 2;
-					msg_obj.mode_id = 0x703;
-					msg_obj.dlc = 2;
-					msg_obj.data_16[0] = 0;
+					msg_obj.mode_id = 0x301;
+					msg_obj.dlc = 3;
+					msg_obj.data_16[0] = 0x31;
+					msg_obj.data_16[1] = 0x00;
+					msg_obj.data_16[2] = 0x00;
+					LPC_CCAN_API->can_transmit(&msg_obj);
+					break;
+				case 't':
+					Board_UART_Println("Sending CAN with ID: 0x301");
+					msg_obj.msgobj = 2;
+					msg_obj.mode_id = 0x301;
+					msg_obj.dlc = 3;
+					msg_obj.data_16[0] = 0x51;
+					msg_obj.data_16[1] = 0x00;
+					msg_obj.data_16[2] = 0x00;
 					LPC_CCAN_API->can_transmit(&msg_obj);
 					break;
 				case 'd':
+					Board_UART_Println("Sending CAN with ID: 0x505");
 					msg_obj.msgobj = 2;
-					msg_obj.mode_id = 0x700;
-					msg_obj.dlc = 2;
-					msg_obj.data_16[0] = 0;
+					msg_obj.mode_id = 0x505;
+					msg_obj.dlc = 4;
+					msg_obj.data_16[0] = 0x0020;
+					msg_obj.data_16[1] = 0x00F0;
 					LPC_CCAN_API->can_transmit(&msg_obj);
 					break;
-				case 'e':
+				case 'x':
+					Board_UART_Println("Sending CAN with ID: 0x505");
 					msg_obj.msgobj = 2;
-					msg_obj.mode_id = 0x700;
-					msg_obj.dlc = 2;
-					msg_obj.data_16[0] = 32000;
-					LPC_CCAN_API->can_transmit(&msg_obj);
-					break;
-				case 'f':
-					msg_obj.msgobj = 2;
-					msg_obj.mode_id = 0x700;
-					msg_obj.dlc = 2;
-					msg_obj.data_16[0] = 65500;
+					msg_obj.mode_id = 0x505;
+					msg_obj.dlc = 4;
+					msg_obj.data_16[0] = 0x0020;
+					msg_obj.data_16[1] = 0x0F00;
 					LPC_CCAN_API->can_transmit(&msg_obj);
 					break;
 				case 'g':
 					Board_UART_PrintNum(0xFFF, 16, true);
 					break;
+				case 's':	//receive from RaspberryPi
+					send = !send;
+					break;
 				default:
-					Board_UART_Println("Invalid Command");
+					//Board_UART_Println("Invalid Command");
 					break;
 			}
 		}
 	}
 }
+

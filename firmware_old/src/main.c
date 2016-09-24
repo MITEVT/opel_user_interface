@@ -189,22 +189,27 @@ int main(void)
 	Stepper_Step(&vgauge, msTicks);
 	Stepper_Step(&tgauge, msTicks);
 
-
+	int vel1 = 0;
+	int vel2 = 0;
 	while (1) {
 		if (!RingBuffer_IsEmpty(&can_rx_buffer)) {
 			CCAN_MSG_OBJ_T temp_msg;
 			RingBuffer_Pop(&can_rx_buffer, &temp_msg);
 			
 			if (temp_msg.mode_id==0x703){
-				int vel = (temp_msg.data_16[0]*60*22*22)/(7*12*5280); 
-				int vpospercent = vel*100/110;
-				Stepper_SetPosition(&vgauge, vpospercent, msTicks); 
+				vel1 = (temp_msg.data_16[0]*60*22*22)/(7*12*5280);
 			}
-
-			if (temp_msg.mode_id==0x700){
+			if (temp_msg.mode_id==0x704) {
+				vel2 = (temp_msg.data_16[0]*60*22*22)/(7*12*5280);
+			}
+			vel = (vel1+vel2)/2			
+			int vpospercent = vel*100/110;
+			Stepper_SetPosition(&vgauge, vpospercent, msTicks); 
+			
+			if (temp_msg.mode_id==0x301){
 				int throt = temp_msg.data_16[0];
 				int tpospercent = throt*640/6535;
-				Stepper_SetPosition(&tgauge,tpospercent,msTicks);	
+				Stepper_SetPosition(&tgauge, tpospercent, msTicks);	
 			}
 
 		}	
