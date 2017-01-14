@@ -1,0 +1,9 @@
+ltc6804.c:23:6:LTC6804_Wake	24	static
+ltc6804.c:220:10:LTC6804_CalculatePEC	48	static
+ltc6804.c:37:6:LTC6804_LoadCFG	24	static
+ltc6804.c:56:6:LTC6804_Init	32	static
+ltc6804.c:91:6:LTC6804_StartADC	24	static
+ltc6804.c:109:6:LTC6804_CVSelfTestCmd	24	static
+ltc6804.c:124:6:LTC6804_OpenWireTestCmd	24	static
+ltc6804.c:151:6:LTC6804_ReadCFG	24	static
+ltc6804.c:171:6:LTC6804_ReadVoltageGroup	32	static
