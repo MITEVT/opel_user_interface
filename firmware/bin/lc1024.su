@@ -1,0 +1,7 @@
+lc1024.c:37:6:ZeroTxBuf	0	static
+lc1024.c:15:6:LC1024_Init	24	static
+lc1024.c:44:6:LC1024_ReadStatusReg	24	static
+lc1024.c:55:6:LC1024_WriteDisable	24	static
+lc1024.c:63:6:LC1024_ReadMem	24	static
+lc1024.c:97:6:LC1024_WriteEnable	24	static
+lc1024.c:78:6:LC1024_WriteMem	24	static
