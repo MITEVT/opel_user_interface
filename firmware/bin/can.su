@@ -1,0 +1,15 @@
+can.c:99:6:CAN_error	0	static
+can.c:81:6:CAN_rx	8	static
+can.c:90:6:CAN_tx	8	static
+can.c:28:6:Baudrate_Calculate	32	static
+can.c:53:9:CAN_GetTxErrorCount	0	static
+can.c:58:9:CAN_GetRxErrorCount	0	static
+can.c:63:6:CAN_IsTxBusy	0	static
+can.c:68:6:CAN_ResetPeripheral	0	static
+can.c:72:13:Convert_To_CAN_Error	0	static
+can.c:110:6:CAN_IRQHandler	8	static
+can.c:114:6:CAN_Init	64	static
+can.c:152:13:CAN_Receive	8	static
+can.c:166:6:prepare_tx_msg_obj	12	static
+can.c:176:13:CAN_Transmit	32	static
+can.c:193:13:CAN_GetErrorStatus	0	static

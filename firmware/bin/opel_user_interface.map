@@ -50,11 +50,13 @@ Archive member included because of file (symbol)
 Allocating common symbols
 Common symbol       size              file
 
+SystemCoreClock     0x4               bin/chip_11xx.o
 tmp_msg_obj         0x18              bin/can.o
 _int_pin            0x1               bin/mcp2515.o
 _tx_buffer          0xc0              bin/can.o
 _baud               0x4               bin/lc1024.o
 _rx_buffer          0xc0              bin/can.o
+TicksPerMS          0x4               bin/sysinit.o
 _cs_pin             0x1               bin/lc1024.o
 msTicks             0x4               bin/board.o
 _int_gpio           0x1               bin/mcp2515.o
@@ -101,7 +103,7 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x18 bin/adc_1125.o
  .debug_macro   0x00000000      0x160 bin/adc_1125.o
- .debug_macro   0x00000000      0x820 bin/adc_1125.o
+ .debug_macro   0x00000000      0x826 bin/adc_1125.o
  .debug_macro   0x00000000       0x22 bin/adc_1125.o
  .debug_macro   0x00000000       0x44 bin/adc_1125.o
  .debug_macro   0x00000000       0xe3 bin/adc_1125.o
@@ -128,7 +130,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x21c bin/adc_1125.o
  .debug_macro   0x00000000      0x129 bin/adc_1125.o
  .debug_line    0x00000000      0x2d7 bin/adc_1125.o
- .debug_str     0x00000000     0x7226 bin/adc_1125.o
+ .debug_str     0x00000000     0x7219 bin/adc_1125.o
  .comment       0x00000000       0x71 bin/adc_1125.o
  .ARM.attributes
                 0x00000000       0x31 bin/adc_1125.o
@@ -164,37 +166,37 @@ Discarded input sections
  .text.setStartMode
                 0x00000000       0x14 bin/adc_11xx.o
  .text.readAdcVal
-                0x00000000       0x16 bin/adc_11xx.o
+                0x00000000       0x18 bin/adc_11xx.o
  .text.Chip_ADC_Init
-                0x00000000       0x60 bin/adc_11xx.o
+                0x00000000       0x64 bin/adc_11xx.o
  .text.Chip_ADC_DeInit
                 0x00000000       0x28 bin/adc_11xx.o
  .text.Chip_ADC_ReadValue
-                0x00000000       0x16 bin/adc_11xx.o
+                0x00000000       0x18 bin/adc_11xx.o
  .text.Chip_ADC_ReadStatus
                 0x00000000       0x34 bin/adc_11xx.o
  .text.Chip_ADC_Int_SetChannelCmd
                 0x00000000       0x18 bin/adc_11xx.o
  .text.Chip_ADC_SetStartMode
-                0x00000000       0x28 bin/adc_11xx.o
+                0x00000000       0x34 bin/adc_11xx.o
  .text.Chip_ADC_SetSampleRate
-                0x00000000       0x54 bin/adc_11xx.o
+                0x00000000       0x68 bin/adc_11xx.o
  .text.Chip_ADC_SetResolution
-                0x00000000        0xe bin/adc_11xx.o
+                0x00000000        0xc bin/adc_11xx.o
  .text.Chip_ADC_EnableChannel
                 0x00000000       0x28 bin/adc_11xx.o
  .text.Chip_ADC_SetBurstCmd
-                0x00000000       0x28 bin/adc_11xx.o
+                0x00000000       0x2c bin/adc_11xx.o
  .text.Chip_ADC_ReadByte
-                0x00000000       0x1a bin/adc_11xx.o
- .debug_info    0x00000000      0xe0a bin/adc_11xx.o
+                0x00000000       0x1c bin/adc_11xx.o
+ .debug_info    0x00000000      0xe35 bin/adc_11xx.o
  .debug_abbrev  0x00000000      0x309 bin/adc_11xx.o
- .debug_loc     0x00000000      0x6ee bin/adc_11xx.o
+ .debug_loc     0x00000000      0x782 bin/adc_11xx.o
  .debug_aranges
                 0x00000000       0x80 bin/adc_11xx.o
- .debug_ranges  0x00000000      0x110 bin/adc_11xx.o
+ .debug_ranges  0x00000000      0x100 bin/adc_11xx.o
  .debug_macro   0x00000000      0x160 bin/adc_11xx.o
- .debug_macro   0x00000000      0x820 bin/adc_11xx.o
+ .debug_macro   0x00000000      0x826 bin/adc_11xx.o
  .debug_macro   0x00000000       0x22 bin/adc_11xx.o
  .debug_macro   0x00000000       0x44 bin/adc_11xx.o
  .debug_macro   0x00000000       0xe3 bin/adc_11xx.o
@@ -220,10 +222,10 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/adc_11xx.o
  .debug_macro   0x00000000      0x21c bin/adc_11xx.o
  .debug_macro   0x00000000      0x129 bin/adc_11xx.o
- .debug_line    0x00000000      0x496 bin/adc_11xx.o
- .debug_str     0x00000000     0x7b3d bin/adc_11xx.o
+ .debug_line    0x00000000      0x48e bin/adc_11xx.o
+ .debug_str     0x00000000     0x7b30 bin/adc_11xx.o
  .comment       0x00000000       0x71 bin/adc_11xx.o
- .debug_frame   0x00000000      0x130 bin/adc_11xx.o
+ .debug_frame   0x00000000      0x128 bin/adc_11xx.o
  .ARM.attributes
                 0x00000000       0x31 bin/adc_11xx.o
  .group         0x00000000        0x8 bin/chip_11xx.o
@@ -255,15 +257,7 @@ Discarded input sections
  .text          0x00000000        0x0 bin/chip_11xx.o
  .data          0x00000000        0x0 bin/chip_11xx.o
  .bss           0x00000000        0x0 bin/chip_11xx.o
- .text.SystemCoreClockUpdate
-                0x00000000       0x10 bin/chip_11xx.o
- .debug_info    0x00000000       0xe7 bin/chip_11xx.o
- .debug_abbrev  0x00000000       0x9b bin/chip_11xx.o
- .debug_aranges
-                0x00000000       0x20 bin/chip_11xx.o
- .debug_ranges  0x00000000       0x10 bin/chip_11xx.o
- .debug_macro   0x00000000      0x160 bin/chip_11xx.o
- .debug_macro   0x00000000      0x820 bin/chip_11xx.o
+ .debug_macro   0x00000000      0x826 bin/chip_11xx.o
  .debug_macro   0x00000000       0x22 bin/chip_11xx.o
  .debug_macro   0x00000000       0x44 bin/chip_11xx.o
  .debug_macro   0x00000000       0xe3 bin/chip_11xx.o
@@ -289,13 +283,6 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/chip_11xx.o
  .debug_macro   0x00000000      0x21c bin/chip_11xx.o
  .debug_macro   0x00000000      0x129 bin/chip_11xx.o
- .debug_line    0x00000000      0x2eb bin/chip_11xx.o
- .debug_str     0x00000000     0x726b bin/chip_11xx.o
- .comment       0x00000000       0x71 bin/chip_11xx.o
- .debug_frame   0x00000000       0x2c bin/chip_11xx.o
- .ARM.attributes
-                0x00000000       0x31 bin/chip_11xx.o
- COMMON         0x00000000        0x0 bin/chip_11xx.o
  .group         0x00000000        0x8 bin/clock_11xx.o
  .group         0x00000000        0x8 bin/clock_11xx.o
  .group         0x00000000        0x8 bin/clock_11xx.o
@@ -339,22 +326,7 @@ Discarded input sections
                 0x00000000       0x28 bin/clock_11xx.o
  .text.Chip_Clock_GetSystemPLLInClockRate
                 0x00000000       0x28 bin/clock_11xx.o
- .text.Chip_Clock_GetSystemPLLOutClockRate
-                0x00000000       0x18 bin/clock_11xx.o
- .text.Chip_Clock_GetMainClockRate
-                0x00000000       0x34 bin/clock_11xx.o
- .text.Chip_Clock_GetSystemClockRate
-                0x00000000       0x14 bin/clock_11xx.o
- .rodata.wdtOSCRate
-                0x00000000       0x40 bin/clock_11xx.o
- .debug_info    0x00000000      0x8fa bin/clock_11xx.o
- .debug_abbrev  0x00000000      0x23f bin/clock_11xx.o
- .debug_loc     0x00000000      0x16c bin/clock_11xx.o
- .debug_aranges
-                0x00000000       0x68 bin/clock_11xx.o
- .debug_ranges  0x00000000       0x58 bin/clock_11xx.o
- .debug_macro   0x00000000      0x160 bin/clock_11xx.o
- .debug_macro   0x00000000      0x820 bin/clock_11xx.o
+ .debug_macro   0x00000000      0x826 bin/clock_11xx.o
  .debug_macro   0x00000000       0x22 bin/clock_11xx.o
  .debug_macro   0x00000000       0x44 bin/clock_11xx.o
  .debug_macro   0x00000000       0xe3 bin/clock_11xx.o
@@ -380,12 +352,6 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/clock_11xx.o
  .debug_macro   0x00000000      0x21c bin/clock_11xx.o
  .debug_macro   0x00000000      0x129 bin/clock_11xx.o
- .debug_line    0x00000000      0x3e4 bin/clock_11xx.o
- .debug_str     0x00000000     0x7a11 bin/clock_11xx.o
- .comment       0x00000000       0x71 bin/clock_11xx.o
- .debug_frame   0x00000000       0xe0 bin/clock_11xx.o
- .ARM.attributes
-                0x00000000       0x31 bin/clock_11xx.o
  .group         0x00000000        0x8 bin/gpio_11xx_1.o
  .group         0x00000000        0x8 bin/gpio_11xx_1.o
  .group         0x00000000        0x8 bin/gpio_11xx_1.o
@@ -420,7 +386,7 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x18 bin/gpio_11xx_1.o
  .debug_macro   0x00000000      0x160 bin/gpio_11xx_1.o
- .debug_macro   0x00000000      0x820 bin/gpio_11xx_1.o
+ .debug_macro   0x00000000      0x826 bin/gpio_11xx_1.o
  .debug_macro   0x00000000       0x22 bin/gpio_11xx_1.o
  .debug_macro   0x00000000       0x44 bin/gpio_11xx_1.o
  .debug_macro   0x00000000       0xe3 bin/gpio_11xx_1.o
@@ -447,7 +413,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x21c bin/gpio_11xx_1.o
  .debug_macro   0x00000000      0x129 bin/gpio_11xx_1.o
  .debug_line    0x00000000      0x2da bin/gpio_11xx_1.o
- .debug_str     0x00000000     0x7229 bin/gpio_11xx_1.o
+ .debug_str     0x00000000     0x721c bin/gpio_11xx_1.o
  .comment       0x00000000       0x71 bin/gpio_11xx_1.o
  .ARM.attributes
                 0x00000000       0x31 bin/gpio_11xx_1.o
@@ -480,28 +446,17 @@ Discarded input sections
  .text          0x00000000        0x0 bin/gpio_11xx_2.o
  .data          0x00000000        0x0 bin/gpio_11xx_2.o
  .bss           0x00000000        0x0 bin/gpio_11xx_2.o
- .text.Chip_GPIO_Init
-                0x00000000       0x10 bin/gpio_11xx_2.o
  .text.Chip_GPIO_DeInit
-                0x00000000       0x10 bin/gpio_11xx_2.o
- .text.Chip_GPIO_WriteDirBit
-                0x00000000       0x28 bin/gpio_11xx_2.o
+                0x00000000       0x14 bin/gpio_11xx_2.o
  .text.Chip_GPIO_SetDir
-                0x00000000       0x1e bin/gpio_11xx_2.o
+                0x00000000       0x1c bin/gpio_11xx_2.o
  .text.Chip_GPIO_SetPinDIR
                 0x00000000       0x28 bin/gpio_11xx_2.o
  .text.Chip_GPIO_SetPortDIR
-                0x00000000       0x1e bin/gpio_11xx_2.o
+                0x00000000       0x1c bin/gpio_11xx_2.o
  .text.Chip_GPIO_SetupPinInt
-                0x00000000       0x5c bin/gpio_11xx_2.o
- .debug_info    0x00000000      0xc3d bin/gpio_11xx_2.o
- .debug_abbrev  0x00000000      0x1fb bin/gpio_11xx_2.o
- .debug_loc     0x00000000      0x46f bin/gpio_11xx_2.o
- .debug_aranges
-                0x00000000       0x50 bin/gpio_11xx_2.o
- .debug_ranges  0x00000000       0xb8 bin/gpio_11xx_2.o
- .debug_macro   0x00000000      0x160 bin/gpio_11xx_2.o
- .debug_macro   0x00000000      0x820 bin/gpio_11xx_2.o
+                0x00000000       0x60 bin/gpio_11xx_2.o
+ .debug_macro   0x00000000      0x826 bin/gpio_11xx_2.o
  .debug_macro   0x00000000       0x22 bin/gpio_11xx_2.o
  .debug_macro   0x00000000       0x44 bin/gpio_11xx_2.o
  .debug_macro   0x00000000       0xe3 bin/gpio_11xx_2.o
@@ -527,12 +482,6 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/gpio_11xx_2.o
  .debug_macro   0x00000000      0x21c bin/gpio_11xx_2.o
  .debug_macro   0x00000000      0x129 bin/gpio_11xx_2.o
- .debug_line    0x00000000      0x3e9 bin/gpio_11xx_2.o
- .debug_str     0x00000000     0x78f9 bin/gpio_11xx_2.o
- .comment       0x00000000       0x71 bin/gpio_11xx_2.o
- .debug_frame   0x00000000       0xc4 bin/gpio_11xx_2.o
- .ARM.attributes
-                0x00000000       0x31 bin/gpio_11xx_2.o
  .group         0x00000000        0x8 bin/gpiogroup_11xx.o
  .group         0x00000000        0x8 bin/gpiogroup_11xx.o
  .group         0x00000000        0x8 bin/gpiogroup_11xx.o
@@ -567,7 +516,7 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x18 bin/gpiogroup_11xx.o
  .debug_macro   0x00000000      0x160 bin/gpiogroup_11xx.o
- .debug_macro   0x00000000      0x820 bin/gpiogroup_11xx.o
+ .debug_macro   0x00000000      0x826 bin/gpiogroup_11xx.o
  .debug_macro   0x00000000       0x22 bin/gpiogroup_11xx.o
  .debug_macro   0x00000000       0x44 bin/gpiogroup_11xx.o
  .debug_macro   0x00000000       0xe3 bin/gpiogroup_11xx.o
@@ -594,7 +543,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x21c bin/gpiogroup_11xx.o
  .debug_macro   0x00000000      0x129 bin/gpiogroup_11xx.o
  .debug_line    0x00000000      0x2dd bin/gpiogroup_11xx.o
- .debug_str     0x00000000     0x722c bin/gpiogroup_11xx.o
+ .debug_str     0x00000000     0x721f bin/gpiogroup_11xx.o
  .comment       0x00000000       0x71 bin/gpiogroup_11xx.o
  .ARM.attributes
                 0x00000000       0x31 bin/gpiogroup_11xx.o
@@ -628,27 +577,31 @@ Discarded input sections
  .data          0x00000000        0x0 bin/i2c_11xx.o
  .bss           0x00000000        0x0 bin/i2c_11xx.o
  .text.Chip_I2C_EventHandler
-                0x00000000       0x14 bin/i2c_11xx.o
+                0x00000000       0x18 bin/i2c_11xx.o
  .text.handleMasterXferState
-                0x00000000       0xd4 bin/i2c_11xx.o
+                0x00000000       0xfc bin/i2c_11xx.o
+ .rodata.handleMasterXferState
+                0x00000000      0x164 bin/i2c_11xx.o
  .text.getSlaveIndex
-                0x00000000       0x8c bin/i2c_11xx.o
+                0x00000000       0x88 bin/i2c_11xx.o
  .text.handleSlaveXferState
-                0x00000000       0xbe bin/i2c_11xx.o
+                0x00000000       0xac bin/i2c_11xx.o
+ .rodata.handleSlaveXferState
+                0x00000000      0x1a4 bin/i2c_11xx.o
  .text.Chip_I2C_Init
-                0x00000000       0x38 bin/i2c_11xx.o
+                0x00000000       0x3c bin/i2c_11xx.o
  .text.Chip_I2C_DeInit
-                0x00000000       0x20 bin/i2c_11xx.o
+                0x00000000       0x24 bin/i2c_11xx.o
  .text.Chip_I2C_SetClockRate
                 0x00000000       0x24 bin/i2c_11xx.o
  .text.Chip_I2C_GetClockRate
                 0x00000000       0x20 bin/i2c_11xx.o
  .text.Chip_I2C_SetMasterEventHandler
-                0x00000000       0x18 bin/i2c_11xx.o
+                0x00000000       0x20 bin/i2c_11xx.o
  .text.Chip_I2C_GetMasterEventHandler
                 0x00000000        0xc bin/i2c_11xx.o
  .text.Chip_I2C_MasterTransfer
-                0x00000000       0x5c bin/i2c_11xx.o
+                0x00000000       0x60 bin/i2c_11xx.o
  .text.Chip_I2C_MasterSend
                 0x00000000       0x28 bin/i2c_11xx.o
  .text.Chip_I2C_MasterCmdRead
@@ -659,27 +612,27 @@ Discarded input sections
                 0x00000000       0x1c bin/i2c_11xx.o
  .text.Chip_I2C_MasterStateHandler
                 0x00000000       0x20 bin/i2c_11xx.o
+ .text.Chip_I2C_EventHandlerPolling
+                0x00000000       0x2c bin/i2c_11xx.o
  .text.Chip_I2C_SlaveSetup
                 0x00000000       0x70 bin/i2c_11xx.o
  .text.Chip_I2C_SlaveStateHandler
-                0x00000000       0x5c bin/i2c_11xx.o
+                0x00000000       0x60 bin/i2c_11xx.o
  .text.Chip_I2C_Disable
                 0x00000000       0x10 bin/i2c_11xx.o
  .text.Chip_I2C_IsStateChanged
                 0x00000000       0x10 bin/i2c_11xx.o
- .text.Chip_I2C_EventHandlerPolling
-                0x00000000       0x2c bin/i2c_11xx.o
  .data.i2c      0x00000000       0x1c bin/i2c_11xx.o
  .bss.i2c_slave
                 0x00000000       0x28 bin/i2c_11xx.o
- .debug_info    0x00000000     0x1428 bin/i2c_11xx.o
- .debug_abbrev  0x00000000      0x492 bin/i2c_11xx.o
- .debug_loc     0x00000000      0x973 bin/i2c_11xx.o
+ .debug_info    0x00000000     0x1443 bin/i2c_11xx.o
+ .debug_abbrev  0x00000000      0x4b0 bin/i2c_11xx.o
+ .debug_loc     0x00000000      0xb3d bin/i2c_11xx.o
  .debug_aranges
                 0x00000000       0xc0 bin/i2c_11xx.o
- .debug_ranges  0x00000000      0x198 bin/i2c_11xx.o
+ .debug_ranges  0x00000000      0x220 bin/i2c_11xx.o
  .debug_macro   0x00000000      0x172 bin/i2c_11xx.o
- .debug_macro   0x00000000      0x820 bin/i2c_11xx.o
+ .debug_macro   0x00000000      0x826 bin/i2c_11xx.o
  .debug_macro   0x00000000       0x22 bin/i2c_11xx.o
  .debug_macro   0x00000000       0x44 bin/i2c_11xx.o
  .debug_macro   0x00000000       0xe3 bin/i2c_11xx.o
@@ -705,10 +658,10 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/i2c_11xx.o
  .debug_macro   0x00000000      0x21c bin/i2c_11xx.o
  .debug_macro   0x00000000      0x129 bin/i2c_11xx.o
- .debug_line    0x00000000      0x632 bin/i2c_11xx.o
- .debug_str     0x00000000     0x7c54 bin/i2c_11xx.o
+ .debug_line    0x00000000      0x65f bin/i2c_11xx.o
+ .debug_str     0x00000000     0x7c51 bin/i2c_11xx.o
  .comment       0x00000000       0x71 bin/i2c_11xx.o
- .debug_frame   0x00000000      0x214 bin/i2c_11xx.o
+ .debug_frame   0x00000000      0x23c bin/i2c_11xx.o
  .ARM.attributes
                 0x00000000       0x31 bin/i2c_11xx.o
  .group         0x00000000        0x8 bin/iocon_11xx.o
@@ -745,7 +698,7 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x18 bin/iocon_11xx.o
  .debug_macro   0x00000000      0x160 bin/iocon_11xx.o
- .debug_macro   0x00000000      0x820 bin/iocon_11xx.o
+ .debug_macro   0x00000000      0x826 bin/iocon_11xx.o
  .debug_macro   0x00000000       0x22 bin/iocon_11xx.o
  .debug_macro   0x00000000       0x44 bin/iocon_11xx.o
  .debug_macro   0x00000000       0xe3 bin/iocon_11xx.o
@@ -772,7 +725,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x21c bin/iocon_11xx.o
  .debug_macro   0x00000000      0x129 bin/iocon_11xx.o
  .debug_line    0x00000000      0x2d9 bin/iocon_11xx.o
- .debug_str     0x00000000     0x7228 bin/iocon_11xx.o
+ .debug_str     0x00000000     0x721b bin/iocon_11xx.o
  .comment       0x00000000       0x71 bin/iocon_11xx.o
  .ARM.attributes
                 0x00000000       0x31 bin/iocon_11xx.o
@@ -810,7 +763,7 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x18 bin/pinint_11xx.o
  .debug_macro   0x00000000      0x160 bin/pinint_11xx.o
- .debug_macro   0x00000000      0x820 bin/pinint_11xx.o
+ .debug_macro   0x00000000      0x826 bin/pinint_11xx.o
  .debug_macro   0x00000000       0x22 bin/pinint_11xx.o
  .debug_macro   0x00000000       0x44 bin/pinint_11xx.o
  .debug_macro   0x00000000       0xe3 bin/pinint_11xx.o
@@ -837,7 +790,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x21c bin/pinint_11xx.o
  .debug_macro   0x00000000      0x129 bin/pinint_11xx.o
  .debug_line    0x00000000      0x2da bin/pinint_11xx.o
- .debug_str     0x00000000     0x7229 bin/pinint_11xx.o
+ .debug_str     0x00000000     0x721c bin/pinint_11xx.o
  .comment       0x00000000       0x71 bin/pinint_11xx.o
  .ARM.attributes
                 0x00000000       0x31 bin/pinint_11xx.o
@@ -875,15 +828,15 @@ Discarded input sections
  .text.Chip_PMU_DeepPowerDownState
                 0x00000000       0x18 bin/pmu_11xx.o
  .text.Chip_PMU_Sleep
-                0x00000000        0xc bin/pmu_11xx.o
- .debug_info    0x00000000      0x272 bin/pmu_11xx.o
- .debug_abbrev  0x00000000      0x14d bin/pmu_11xx.o
- .debug_loc     0x00000000       0x42 bin/pmu_11xx.o
+                0x00000000       0x1c bin/pmu_11xx.o
+ .debug_info    0x00000000      0x297 bin/pmu_11xx.o
+ .debug_abbrev  0x00000000      0x189 bin/pmu_11xx.o
+ .debug_loc     0x00000000       0x34 bin/pmu_11xx.o
  .debug_aranges
                 0x00000000       0x30 bin/pmu_11xx.o
  .debug_ranges  0x00000000       0x20 bin/pmu_11xx.o
  .debug_macro   0x00000000      0x160 bin/pmu_11xx.o
- .debug_macro   0x00000000      0x820 bin/pmu_11xx.o
+ .debug_macro   0x00000000      0x826 bin/pmu_11xx.o
  .debug_macro   0x00000000       0x22 bin/pmu_11xx.o
  .debug_macro   0x00000000       0x44 bin/pmu_11xx.o
  .debug_macro   0x00000000       0xe3 bin/pmu_11xx.o
@@ -909,10 +862,10 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/pmu_11xx.o
  .debug_macro   0x00000000      0x21c bin/pmu_11xx.o
  .debug_macro   0x00000000      0x129 bin/pmu_11xx.o
- .debug_line    0x00000000      0x326 bin/pmu_11xx.o
- .debug_str     0x00000000     0x730c bin/pmu_11xx.o
+ .debug_line    0x00000000      0x334 bin/pmu_11xx.o
+ .debug_str     0x00000000     0x72ff bin/pmu_11xx.o
  .comment       0x00000000       0x71 bin/pmu_11xx.o
- .debug_frame   0x00000000       0x4c bin/pmu_11xx.o
+ .debug_frame   0x00000000       0x40 bin/pmu_11xx.o
  .ARM.attributes
                 0x00000000       0x31 bin/pmu_11xx.o
  .group         0x00000000        0x8 bin/ring_buffer.o
@@ -938,49 +891,16 @@ Discarded input sections
  .text          0x00000000        0x0 bin/ring_buffer.o
  .data          0x00000000        0x0 bin/ring_buffer.o
  .bss           0x00000000        0x0 bin/ring_buffer.o
- .text.RingBuffer_Init
-                0x00000000       0x10 bin/ring_buffer.o
- .text.RingBuffer_Insert
-                0x00000000       0x34 bin/ring_buffer.o
  .text.RingBuffer_InsertMult
-                0x00000000       0x7c bin/ring_buffer.o
- .text.RingBuffer_Pop
-                0x00000000       0x32 bin/ring_buffer.o
+                0x00000000       0xa0 bin/ring_buffer.o
  .text.RingBuffer_PopMult
-                0x00000000       0x86 bin/ring_buffer.o
- .debug_info    0x00000000      0x4ba bin/ring_buffer.o
- .debug_abbrev  0x00000000      0x1a5 bin/ring_buffer.o
- .debug_loc     0x00000000      0x4b4 bin/ring_buffer.o
- .debug_aranges
-                0x00000000       0x40 bin/ring_buffer.o
- .debug_ranges  0x00000000       0x60 bin/ring_buffer.o
- .debug_macro   0x00000000      0x129 bin/ring_buffer.o
- .debug_macro   0x00000000      0x820 bin/ring_buffer.o
- .debug_macro   0x00000000       0x58 bin/ring_buffer.o
+                0x00000000       0x98 bin/ring_buffer.o
+ .debug_macro   0x00000000      0x826 bin/ring_buffer.o
  .debug_macro   0x00000000       0x22 bin/ring_buffer.o
- .debug_macro   0x00000000       0x35 bin/ring_buffer.o
- .debug_macro   0x00000000       0x9c bin/ring_buffer.o
- .debug_macro   0x00000000      0x166 bin/ring_buffer.o
- .debug_macro   0x00000000       0x4a bin/ring_buffer.o
- .debug_macro   0x00000000       0x52 bin/ring_buffer.o
- .debug_macro   0x00000000       0x16 bin/ring_buffer.o
- .debug_macro   0x00000000       0x43 bin/ring_buffer.o
- .debug_macro   0x00000000      0x180 bin/ring_buffer.o
- .debug_macro   0x00000000      0x29d bin/ring_buffer.o
- .debug_macro   0x00000000       0x10 bin/ring_buffer.o
- .debug_macro   0x00000000       0x35 bin/ring_buffer.o
  .debug_macro   0x00000000       0xe3 bin/ring_buffer.o
  .debug_macro   0x00000000       0x22 bin/ring_buffer.o
  .debug_macro   0x00000000      0x1df bin/ring_buffer.o
  .debug_macro   0x00000000       0x22 bin/ring_buffer.o
- .debug_macro   0x00000000       0x66 bin/ring_buffer.o
- .debug_macro   0x00000000       0x10 bin/ring_buffer.o
- .debug_line    0x00000000      0x312 bin/ring_buffer.o
- .debug_str     0x00000000     0x584d bin/ring_buffer.o
- .comment       0x00000000       0x71 bin/ring_buffer.o
- .debug_frame   0x00000000       0xc8 bin/ring_buffer.o
- .ARM.attributes
-                0x00000000       0x31 bin/ring_buffer.o
  .group         0x00000000        0x8 bin/ssp_11xx.o
  .group         0x00000000        0x8 bin/ssp_11xx.o
  .group         0x00000000        0x8 bin/ssp_11xx.o
@@ -1010,40 +930,38 @@ Discarded input sections
  .text          0x00000000        0x0 bin/ssp_11xx.o
  .data          0x00000000        0x0 bin/ssp_11xx.o
  .bss           0x00000000        0x0 bin/ssp_11xx.o
- .text.SSP_Read2BFifo
-                0x00000000       0x24 bin/ssp_11xx.o
  .text.SSP_Read1BFifo
-                0x00000000       0x24 bin/ssp_11xx.o
+                0x00000000       0x34 bin/ssp_11xx.o
  .text.Chip_SSP_SetClockRate
                 0x00000000       0x18 bin/ssp_11xx.o
  .text.Chip_SSP_RWFrames_Blocking
-                0x00000000       0xb4 bin/ssp_11xx.o
+                0x00000000      0x118 bin/ssp_11xx.o
  .text.Chip_SSP_WriteFrames_Blocking
-                0x00000000       0x8c bin/ssp_11xx.o
+                0x00000000       0xc8 bin/ssp_11xx.o
  .text.Chip_SSP_ReadFrames_Blocking
-                0x00000000       0xc0 bin/ssp_11xx.o
+                0x00000000       0xdc bin/ssp_11xx.o
  .text.Chip_SSP_Int_FlushData
-                0x00000000       0x16 bin/ssp_11xx.o
+                0x00000000       0x24 bin/ssp_11xx.o
  .text.Chip_SSP_Int_RWFrames8Bits
-                0x00000000       0x52 bin/ssp_11xx.o
+                0x00000000       0x84 bin/ssp_11xx.o
  .text.Chip_SSP_Int_RWFrames16Bits
-                0x00000000       0x58 bin/ssp_11xx.o
+                0x00000000       0xc8 bin/ssp_11xx.o
  .text.Chip_SSP_SetMaster
-                0x00000000       0x10 bin/ssp_11xx.o
+                0x00000000       0x18 bin/ssp_11xx.o
  .text.Chip_SSP_SetBitRate
-                0x00000000       0x64 bin/ssp_11xx.o
+                0x00000000       0x90 bin/ssp_11xx.o
  .text.Chip_SSP_Init
-                0x00000000       0x74 bin/ssp_11xx.o
+                0x00000000       0x70 bin/ssp_11xx.o
  .text.Chip_SSP_DeInit
-                0x00000000       0x40 bin/ssp_11xx.o
- .debug_info    0x00000000     0x1b23 bin/ssp_11xx.o
+                0x00000000       0x48 bin/ssp_11xx.o
+ .debug_info    0x00000000     0x1c7a bin/ssp_11xx.o
  .debug_abbrev  0x00000000      0x3f0 bin/ssp_11xx.o
- .debug_loc     0x00000000      0xea4 bin/ssp_11xx.o
+ .debug_loc     0x00000000     0x12f3 bin/ssp_11xx.o
  .debug_aranges
-                0x00000000       0x80 bin/ssp_11xx.o
- .debug_ranges  0x00000000      0x230 bin/ssp_11xx.o
+                0x00000000       0x78 bin/ssp_11xx.o
+ .debug_ranges  0x00000000      0x7d8 bin/ssp_11xx.o
  .debug_macro   0x00000000      0x160 bin/ssp_11xx.o
- .debug_macro   0x00000000      0x820 bin/ssp_11xx.o
+ .debug_macro   0x00000000      0x826 bin/ssp_11xx.o
  .debug_macro   0x00000000       0x22 bin/ssp_11xx.o
  .debug_macro   0x00000000       0x44 bin/ssp_11xx.o
  .debug_macro   0x00000000       0xe3 bin/ssp_11xx.o
@@ -1069,10 +987,10 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/ssp_11xx.o
  .debug_macro   0x00000000      0x21c bin/ssp_11xx.o
  .debug_macro   0x00000000      0x129 bin/ssp_11xx.o
- .debug_line    0x00000000      0x7d0 bin/ssp_11xx.o
- .debug_str     0x00000000     0x7eda bin/ssp_11xx.o
+ .debug_line    0x00000000      0xa00 bin/ssp_11xx.o
+ .debug_str     0x00000000     0x7ecd bin/ssp_11xx.o
  .comment       0x00000000       0x71 bin/ssp_11xx.o
- .debug_frame   0x00000000      0x198 bin/ssp_11xx.o
+ .debug_frame   0x00000000      0x194 bin/ssp_11xx.o
  .ARM.attributes
                 0x00000000       0x31 bin/ssp_11xx.o
  .group         0x00000000        0x8 bin/sysctl_11xx.o
@@ -1105,21 +1023,21 @@ Discarded input sections
  .data          0x00000000        0x0 bin/sysctl_11xx.o
  .bss           0x00000000        0x0 bin/sysctl_11xx.o
  .text.Chip_SYSCTL_SetDeepSleepPD
-                0x00000000       0x18 bin/sysctl_11xx.o
+                0x00000000       0x1c bin/sysctl_11xx.o
  .text.Chip_SYSCTL_SetWakeup
                 0x00000000       0x18 bin/sysctl_11xx.o
  .text.Chip_SYSCTL_PowerDown
                 0x00000000       0x1c bin/sysctl_11xx.o
  .text.Chip_SYSCTL_PowerUp
                 0x00000000       0x20 bin/sysctl_11xx.o
- .debug_info    0x00000000      0x592 bin/sysctl_11xx.o
- .debug_abbrev  0x00000000       0xdd bin/sysctl_11xx.o
- .debug_loc     0x00000000       0xaf bin/sysctl_11xx.o
+ .debug_info    0x00000000      0x590 bin/sysctl_11xx.o
+ .debug_abbrev  0x00000000       0xdb bin/sysctl_11xx.o
+ .debug_loc     0x00000000       0xbe bin/sysctl_11xx.o
  .debug_aranges
                 0x00000000       0x38 bin/sysctl_11xx.o
  .debug_ranges  0x00000000       0x28 bin/sysctl_11xx.o
  .debug_macro   0x00000000      0x18a bin/sysctl_11xx.o
- .debug_macro   0x00000000      0x820 bin/sysctl_11xx.o
+ .debug_macro   0x00000000      0x826 bin/sysctl_11xx.o
  .debug_macro   0x00000000       0x22 bin/sysctl_11xx.o
  .debug_macro   0x00000000       0x44 bin/sysctl_11xx.o
  .debug_macro   0x00000000       0xe3 bin/sysctl_11xx.o
@@ -1145,8 +1063,8 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/sysctl_11xx.o
  .debug_macro   0x00000000      0x21c bin/sysctl_11xx.o
  .debug_macro   0x00000000      0x129 bin/sysctl_11xx.o
- .debug_line    0x00000000      0x32d bin/sysctl_11xx.o
- .debug_str     0x00000000     0x765b bin/sysctl_11xx.o
+ .debug_line    0x00000000      0x32b bin/sysctl_11xx.o
+ .debug_str     0x00000000     0x764e bin/sysctl_11xx.o
  .comment       0x00000000       0x71 bin/sysctl_11xx.o
  .debug_frame   0x00000000       0x5c bin/sysctl_11xx.o
  .ARM.attributes
@@ -1187,9 +1105,9 @@ Discarded input sections
  .debug_loc     0x00000000       0x18 bin/sysinit_11xx.o
  .debug_aranges
                 0x00000000       0x20 bin/sysinit_11xx.o
- .debug_ranges  0x00000000       0x58 bin/sysinit_11xx.o
+ .debug_ranges  0x00000000       0x60 bin/sysinit_11xx.o
  .debug_macro   0x00000000      0x160 bin/sysinit_11xx.o
- .debug_macro   0x00000000      0x820 bin/sysinit_11xx.o
+ .debug_macro   0x00000000      0x826 bin/sysinit_11xx.o
  .debug_macro   0x00000000       0x22 bin/sysinit_11xx.o
  .debug_macro   0x00000000       0x44 bin/sysinit_11xx.o
  .debug_macro   0x00000000       0xe3 bin/sysinit_11xx.o
@@ -1215,8 +1133,8 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/sysinit_11xx.o
  .debug_macro   0x00000000      0x21c bin/sysinit_11xx.o
  .debug_macro   0x00000000      0x129 bin/sysinit_11xx.o
- .debug_line    0x00000000      0x33e bin/sysinit_11xx.o
- .debug_str     0x00000000     0x7955 bin/sysinit_11xx.o
+ .debug_line    0x00000000      0x341 bin/sysinit_11xx.o
+ .debug_str     0x00000000     0x7948 bin/sysinit_11xx.o
  .comment       0x00000000       0x71 bin/sysinit_11xx.o
  .debug_frame   0x00000000       0x2c bin/sysinit_11xx.o
  .ARM.attributes
@@ -1251,21 +1169,21 @@ Discarded input sections
  .data          0x00000000        0x0 bin/timer_11xx.o
  .bss           0x00000000        0x0 bin/timer_11xx.o
  .text.Chip_TIMER_Init
-                0x00000000       0x3c bin/timer_11xx.o
+                0x00000000       0x44 bin/timer_11xx.o
  .text.Chip_TIMER_DeInit
-                0x00000000       0x3c bin/timer_11xx.o
+                0x00000000       0x4c bin/timer_11xx.o
  .text.Chip_TIMER_Reset
                 0x00000000       0x18 bin/timer_11xx.o
  .text.Chip_TIMER_ExtMatchControlSet
                 0x00000000       0x28 bin/timer_11xx.o
- .debug_info    0x00000000      0x858 bin/timer_11xx.o
- .debug_abbrev  0x00000000      0x1ec bin/timer_11xx.o
- .debug_loc     0x00000000      0x129 bin/timer_11xx.o
+ .debug_info    0x00000000      0x844 bin/timer_11xx.o
+ .debug_abbrev  0x00000000      0x1dd bin/timer_11xx.o
+ .debug_loc     0x00000000      0x14a bin/timer_11xx.o
  .debug_aranges
                 0x00000000       0x38 bin/timer_11xx.o
- .debug_ranges  0x00000000       0x58 bin/timer_11xx.o
+ .debug_ranges  0x00000000       0x88 bin/timer_11xx.o
  .debug_macro   0x00000000      0x160 bin/timer_11xx.o
- .debug_macro   0x00000000      0x820 bin/timer_11xx.o
+ .debug_macro   0x00000000      0x826 bin/timer_11xx.o
  .debug_macro   0x00000000       0x22 bin/timer_11xx.o
  .debug_macro   0x00000000       0x44 bin/timer_11xx.o
  .debug_macro   0x00000000       0xe3 bin/timer_11xx.o
@@ -1291,8 +1209,8 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/timer_11xx.o
  .debug_macro   0x00000000      0x21c bin/timer_11xx.o
  .debug_macro   0x00000000      0x129 bin/timer_11xx.o
- .debug_line    0x00000000      0x36f bin/timer_11xx.o
- .debug_str     0x00000000     0x77eb bin/timer_11xx.o
+ .debug_line    0x00000000      0x370 bin/timer_11xx.o
+ .debug_str     0x00000000     0x77de bin/timer_11xx.o
  .comment       0x00000000       0x71 bin/timer_11xx.o
  .debug_frame   0x00000000       0x64 bin/timer_11xx.o
  .ARM.attributes
@@ -1326,40 +1244,25 @@ Discarded input sections
  .text          0x00000000        0x0 bin/uart_11xx.o
  .data          0x00000000        0x0 bin/uart_11xx.o
  .bss           0x00000000        0x0 bin/uart_11xx.o
- .text.Chip_UART_Init
-                0x00000000       0x28 bin/uart_11xx.o
  .text.Chip_UART_DeInit
-                0x00000000       0x14 bin/uart_11xx.o
+                0x00000000       0x18 bin/uart_11xx.o
  .text.Chip_UART_Send
-                0x00000000       0x1a bin/uart_11xx.o
- .text.Chip_UART_SendBlocking
-                0x00000000       0x24 bin/uart_11xx.o
- .text.Chip_UART_Read
-                0x00000000       0x1a bin/uart_11xx.o
+                0x00000000       0x30 bin/uart_11xx.o
  .text.Chip_UART_ReadBlocking
-                0x00000000       0x24 bin/uart_11xx.o
- .text.Chip_UART_SetBaud
-                0x00000000       0x38 bin/uart_11xx.o
+                0x00000000       0x2c bin/uart_11xx.o
  .text.Chip_UART_RXIntHandlerRB
-                0x00000000       0x1e bin/uart_11xx.o
+                0x00000000       0x2c bin/uart_11xx.o
  .text.Chip_UART_TXIntHandlerRB
-                0x00000000       0x24 bin/uart_11xx.o
+                0x00000000       0x30 bin/uart_11xx.o
  .text.Chip_UART_SendRB
-                0x00000000       0x3e bin/uart_11xx.o
+                0x00000000       0x48 bin/uart_11xx.o
  .text.Chip_UART_ReadRB
-                0x00000000        0xe bin/uart_11xx.o
+                0x00000000       0x10 bin/uart_11xx.o
  .text.Chip_UART_IRQRBHandler
-                0x00000000       0x2e bin/uart_11xx.o
+                0x00000000       0x4c bin/uart_11xx.o
  .text.Chip_UART_SetBaudFDR
-                0x00000000       0x7c bin/uart_11xx.o
- .debug_info    0x00000000     0x125b bin/uart_11xx.o
- .debug_abbrev  0x00000000      0x31d bin/uart_11xx.o
- .debug_loc     0x00000000      0xab7 bin/uart_11xx.o
- .debug_aranges
-                0x00000000       0x80 bin/uart_11xx.o
- .debug_ranges  0x00000000      0x1a8 bin/uart_11xx.o
- .debug_macro   0x00000000      0x160 bin/uart_11xx.o
- .debug_macro   0x00000000      0x820 bin/uart_11xx.o
+                0x00000000       0xa0 bin/uart_11xx.o
+ .debug_macro   0x00000000      0x826 bin/uart_11xx.o
  .debug_macro   0x00000000       0x22 bin/uart_11xx.o
  .debug_macro   0x00000000       0x44 bin/uart_11xx.o
  .debug_macro   0x00000000       0xe3 bin/uart_11xx.o
@@ -1385,12 +1288,6 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/uart_11xx.o
  .debug_macro   0x00000000      0x21c bin/uart_11xx.o
  .debug_macro   0x00000000      0x129 bin/uart_11xx.o
- .debug_line    0x00000000      0x569 bin/uart_11xx.o
- .debug_str     0x00000000     0x7a35 bin/uart_11xx.o
- .comment       0x00000000       0x71 bin/uart_11xx.o
- .debug_frame   0x00000000      0x1d0 bin/uart_11xx.o
- .ARM.attributes
-                0x00000000       0x31 bin/uart_11xx.o
  .group         0x00000000        0x8 bin/wwdt_11xx.o
  .group         0x00000000        0x8 bin/wwdt_11xx.o
  .group         0x00000000        0x8 bin/wwdt_11xx.o
@@ -1421,18 +1318,19 @@ Discarded input sections
  .data          0x00000000        0x0 bin/wwdt_11xx.o
  .bss           0x00000000        0x0 bin/wwdt_11xx.o
  .text.Chip_WWDT_Init
-                0x00000000       0x1c bin/wwdt_11xx.o
+                0x00000000       0x20 bin/wwdt_11xx.o
  .text.Chip_WWDT_DeInit
-                0x00000000       0x14 bin/wwdt_11xx.o
+                0x00000000       0x18 bin/wwdt_11xx.o
  .text.Chip_WWDT_ClearStatusFlag
-                0x00000000       0x1a bin/wwdt_11xx.o
- .debug_info    0x00000000      0x697 bin/wwdt_11xx.o
- .debug_abbrev  0x00000000      0x13f bin/wwdt_11xx.o
+                0x00000000       0x1c bin/wwdt_11xx.o
+ .debug_info    0x00000000      0x699 bin/wwdt_11xx.o
+ .debug_abbrev  0x00000000      0x14e bin/wwdt_11xx.o
+ .debug_loc     0x00000000       0x21 bin/wwdt_11xx.o
  .debug_aranges
                 0x00000000       0x30 bin/wwdt_11xx.o
- .debug_ranges  0x00000000       0x50 bin/wwdt_11xx.o
+ .debug_ranges  0x00000000       0x58 bin/wwdt_11xx.o
  .debug_macro   0x00000000      0x160 bin/wwdt_11xx.o
- .debug_macro   0x00000000      0x820 bin/wwdt_11xx.o
+ .debug_macro   0x00000000      0x826 bin/wwdt_11xx.o
  .debug_macro   0x00000000       0x22 bin/wwdt_11xx.o
  .debug_macro   0x00000000       0x44 bin/wwdt_11xx.o
  .debug_macro   0x00000000       0xe3 bin/wwdt_11xx.o
@@ -1458,10 +1356,10 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/wwdt_11xx.o
  .debug_macro   0x00000000      0x21c bin/wwdt_11xx.o
  .debug_macro   0x00000000      0x129 bin/wwdt_11xx.o
- .debug_line    0x00000000      0x33e bin/wwdt_11xx.o
- .debug_str     0x00000000     0x76fa bin/wwdt_11xx.o
+ .debug_line    0x00000000      0x34a bin/wwdt_11xx.o
+ .debug_str     0x00000000     0x76ed bin/wwdt_11xx.o
  .comment       0x00000000       0x71 bin/wwdt_11xx.o
- .debug_frame   0x00000000       0x40 bin/wwdt_11xx.o
+ .debug_frame   0x00000000       0x4c bin/wwdt_11xx.o
  .ARM.attributes
                 0x00000000       0x31 bin/wwdt_11xx.o
  .group         0x00000000        0x8 bin/a123mbb.o
@@ -1495,19 +1393,19 @@ Discarded input sections
  .data          0x00000000        0x0 bin/a123mbb.o
  .bss           0x00000000        0x0 bin/a123mbb.o
  .text.MBB_MakeCMD
-                0x00000000       0x38 bin/a123mbb.o
+                0x00000000       0x3c bin/a123mbb.o
  .text.MBB_DecodeStd
                 0x00000000       0x7c bin/a123mbb.o
  .text.MBB_DecodeExt
-                0x00000000       0xc8 bin/a123mbb.o
+                0x00000000       0xc0 bin/a123mbb.o
  .debug_info    0x00000000      0x3a0 bin/a123mbb.o
  .debug_abbrev  0x00000000      0x12d bin/a123mbb.o
- .debug_loc     0x00000000       0x94 bin/a123mbb.o
+ .debug_loc     0x00000000       0xde bin/a123mbb.o
  .debug_aranges
                 0x00000000       0x30 bin/a123mbb.o
  .debug_ranges  0x00000000       0x20 bin/a123mbb.o
  .debug_macro   0x00000000      0x16f bin/a123mbb.o
- .debug_macro   0x00000000      0x820 bin/a123mbb.o
+ .debug_macro   0x00000000      0x826 bin/a123mbb.o
  .debug_macro   0x00000000       0x22 bin/a123mbb.o
  .debug_macro   0x00000000       0x44 bin/a123mbb.o
  .debug_macro   0x00000000       0xe3 bin/a123mbb.o
@@ -1534,8 +1432,8 @@ Discarded input sections
  .debug_macro   0x00000000      0x21c bin/a123mbb.o
  .debug_macro   0x00000000      0x129 bin/a123mbb.o
  .debug_macro   0x00000000       0x8e bin/a123mbb.o
- .debug_line    0x00000000      0x377 bin/a123mbb.o
- .debug_str     0x00000000     0x76c0 bin/a123mbb.o
+ .debug_line    0x00000000      0x365 bin/a123mbb.o
+ .debug_str     0x00000000     0x76b3 bin/a123mbb.o
  .comment       0x00000000       0x71 bin/a123mbb.o
  .debug_frame   0x00000000       0x5c bin/a123mbb.o
  .ARM.attributes
@@ -1573,25 +1471,25 @@ Discarded input sections
  .text.Brusa_MakeCTL
                 0x00000000       0x58 bin/brusa.o
  .text.Brusa_DecodeStatus
-                0x00000000       0x52 bin/brusa.o
+                0x00000000       0x54 bin/brusa.o
  .text.Brusa_DecodeActI
                 0x00000000       0x40 bin/brusa.o
  .text.Brusa_DecodeActII
-                0x00000000       0x36 bin/brusa.o
+                0x00000000       0x38 bin/brusa.o
  .text.Brusa_DecodeTemp
                 0x00000000       0x38 bin/brusa.o
  .text.Brusa_DecodeErr
-                0x00000000       0x2a bin/brusa.o
+                0x00000000       0x2c bin/brusa.o
  .text.Brusa_Decode
-                0x00000000       0x64 bin/brusa.o
- .debug_info    0x00000000      0x61d bin/brusa.o
- .debug_abbrev  0x00000000      0x1d4 bin/brusa.o
- .debug_loc     0x00000000      0x305 bin/brusa.o
+                0x00000000       0xb4 bin/brusa.o
+ .debug_info    0x00000000      0x697 bin/brusa.o
+ .debug_abbrev  0x00000000      0x1dc bin/brusa.o
+ .debug_loc     0x00000000      0x39e bin/brusa.o
  .debug_aranges
                 0x00000000       0x50 bin/brusa.o
- .debug_ranges  0x00000000       0x40 bin/brusa.o
+ .debug_ranges  0x00000000       0x78 bin/brusa.o
  .debug_macro   0x00000000      0x16f bin/brusa.o
- .debug_macro   0x00000000      0x820 bin/brusa.o
+ .debug_macro   0x00000000      0x826 bin/brusa.o
  .debug_macro   0x00000000       0x22 bin/brusa.o
  .debug_macro   0x00000000       0x44 bin/brusa.o
  .debug_macro   0x00000000       0xe3 bin/brusa.o
@@ -1618,10 +1516,10 @@ Discarded input sections
  .debug_macro   0x00000000      0x21c bin/brusa.o
  .debug_macro   0x00000000      0x129 bin/brusa.o
  .debug_macro   0x00000000      0x11d bin/brusa.o
- .debug_line    0x00000000      0x3c9 bin/brusa.o
- .debug_str     0x00000000     0x7a86 bin/brusa.o
+ .debug_line    0x00000000      0x3e0 bin/brusa.o
+ .debug_str     0x00000000     0x7a79 bin/brusa.o
  .comment       0x00000000       0x71 bin/brusa.o
- .debug_frame   0x00000000       0xb4 bin/brusa.o
+ .debug_frame   0x00000000       0xb8 bin/brusa.o
  .ARM.attributes
                 0x00000000       0x31 bin/brusa.o
  .group         0x00000000        0x8 bin/can.o
@@ -1664,42 +1562,25 @@ Discarded input sections
  .text          0x00000000        0x0 bin/can.o
  .data          0x00000000        0x0 bin/can.o
  .bss           0x00000000        0x0 bin/can.o
- .text.CAN_error
-                0x00000000       0x14 bin/can.o
- .text.CAN_rx   0x00000000       0x28 bin/can.o
- .text.CAN_tx   0x00000000       0x30 bin/can.o
- .text.Baudrate_Calculate
-                0x00000000       0x7c bin/can.o
  .text.CAN_GetTxErrorCount
                 0x00000000        0xc bin/can.o
  .text.CAN_GetRxErrorCount
                 0x00000000       0x10 bin/can.o
  .text.CAN_IsTxBusy
-                0x00000000       0x10 bin/can.o
+                0x00000000       0x14 bin/can.o
  .text.CAN_ResetPeripheral
                 0x00000000       0x18 bin/can.o
  .text.Convert_To_CAN_Error
                 0x00000000        0x4 bin/can.o
- .text.CAN_Init
-                0x00000000       0xb4 bin/can.o
  .text.CAN_Receive
                 0x00000000       0x3c bin/can.o
  .text.prepare_tx_msg_obj
-                0x00000000       0x1e bin/can.o
+                0x00000000       0x20 bin/can.o
  .text.CAN_Transmit
-                0x00000000       0x74 bin/can.o
+                0x00000000       0x94 bin/can.o
  .text.CAN_GetErrorStatus
                 0x00000000        0xc bin/can.o
- .rodata        0x00000000       0x20 bin/can.o
- .bss.tx_buffer
-                0x00000000       0x14 bin/can.o
- .bss.rx_buffer
-                0x00000000       0x14 bin/can.o
- .bss.can_error_info
-                0x00000000        0x4 bin/can.o
- .bss.can_error_flag
-                0x00000000        0x1 bin/can.o
- .debug_macro   0x00000000      0x820 bin/can.o
+ .debug_macro   0x00000000      0x826 bin/can.o
  .debug_macro   0x00000000       0x22 bin/can.o
  .debug_macro   0x00000000       0x44 bin/can.o
  .debug_macro   0x00000000       0xe3 bin/can.o
@@ -1736,7 +1617,6 @@ Discarded input sections
  .debug_macro   0x00000000      0x29d bin/can.o
  .debug_macro   0x00000000       0x10 bin/can.o
  .debug_macro   0x00000000       0x35 bin/can.o
- COMMON         0x00000000      0x1b0 bin/can.o
  .group         0x00000000        0x8 bin/lc1024.o
  .group         0x00000000        0x8 bin/lc1024.o
  .group         0x00000000        0x8 bin/lc1024.o
@@ -1778,31 +1658,31 @@ Discarded input sections
  .text          0x00000000        0x0 bin/lc1024.o
  .data          0x00000000        0x0 bin/lc1024.o
  .bss           0x00000000        0x0 bin/lc1024.o
+ .text.LC1024_Init
+                0x00000000       0xac bin/lc1024.o
  .text.ZeroTxBuf
                 0x00000000       0x18 bin/lc1024.o
- .text.LC1024_Init
-                0x00000000       0x9c bin/lc1024.o
  .text.LC1024_ReadStatusReg
-                0x00000000       0x68 bin/lc1024.o
+                0x00000000       0x74 bin/lc1024.o
  .text.LC1024_WriteDisable
-                0x00000000       0x5c bin/lc1024.o
+                0x00000000       0x68 bin/lc1024.o
  .text.LC1024_ReadMem
-                0x00000000       0x78 bin/lc1024.o
+                0x00000000       0x80 bin/lc1024.o
  .text.LC1024_WriteEnable
-                0x00000000       0x5c bin/lc1024.o
+                0x00000000       0x68 bin/lc1024.o
  .text.LC1024_WriteMem
-                0x00000000       0x88 bin/lc1024.o
+                0x00000000       0x98 bin/lc1024.o
  .bss.Tx_Buf    0x00000000        0xc bin/lc1024.o
  .bss.xf_setup  0x00000000       0x14 bin/lc1024.o
  .bss._pSSP     0x00000000        0x4 bin/lc1024.o
- .debug_info    0x00000000      0xbf1 bin/lc1024.o
- .debug_abbrev  0x00000000      0x28c bin/lc1024.o
- .debug_loc     0x00000000      0x478 bin/lc1024.o
+ .debug_info    0x00000000      0xc7e bin/lc1024.o
+ .debug_abbrev  0x00000000      0x2d7 bin/lc1024.o
+ .debug_loc     0x00000000      0x619 bin/lc1024.o
  .debug_aranges
                 0x00000000       0x50 bin/lc1024.o
- .debug_ranges  0x00000000      0x190 bin/lc1024.o
+ .debug_ranges  0x00000000      0x1e0 bin/lc1024.o
  .debug_macro   0x00000000      0x217 bin/lc1024.o
- .debug_macro   0x00000000      0x820 bin/lc1024.o
+ .debug_macro   0x00000000      0x826 bin/lc1024.o
  .debug_macro   0x00000000       0x22 bin/lc1024.o
  .debug_macro   0x00000000       0x44 bin/lc1024.o
  .debug_macro   0x00000000       0xe3 bin/lc1024.o
@@ -1840,10 +1720,10 @@ Discarded input sections
  .debug_macro   0x00000000      0x29d bin/lc1024.o
  .debug_macro   0x00000000       0x10 bin/lc1024.o
  .debug_macro   0x00000000       0x35 bin/lc1024.o
- .debug_line    0x00000000      0x5c2 bin/lc1024.o
- .debug_str     0x00000000     0x9db5 bin/lc1024.o
+ .debug_line    0x00000000      0x5c6 bin/lc1024.o
+ .debug_str     0x00000000     0x9db2 bin/lc1024.o
  .comment       0x00000000       0x71 bin/lc1024.o
- .debug_frame   0x00000000      0x110 bin/lc1024.o
+ .debug_frame   0x00000000      0x100 bin/lc1024.o
  .ARM.attributes
                 0x00000000       0x31 bin/lc1024.o
  COMMON         0x00000000        0x6 bin/lc1024.o
@@ -1888,36 +1768,36 @@ Discarded input sections
  .text          0x00000000        0x0 bin/ltc6804.o
  .data          0x00000000        0x0 bin/ltc6804.o
  .bss           0x00000000        0x0 bin/ltc6804.o
- .text.divu10   0x00000000       0x22 bin/ltc6804.o
- .text._calculate_pec
-                0x00000000       0x34 bin/ltc6804.o
- .text.LTC6804_WriteCFG
-                0x00000000       0x50 bin/ltc6804.o
- .text._wake    0x00000000       0xa4 bin/ltc6804.o
+ .text.divu10   0x00000000       0x24 bin/ltc6804.o
+ .text._set_balance_states
+                0x00000000       0xc0 bin/ltc6804.o
+ .text.LTC6804_UpdateBalanceStates
+                0x00000000       0xa4 bin/ltc6804.o
+ .text._wake    0x00000000       0xbc bin/ltc6804.o
  .text._command
-                0x00000000       0x74 bin/ltc6804.o
+                0x00000000       0x98 bin/ltc6804.o
  .text.LTC6804_ClearCellVoltages
                 0x00000000       0x10 bin/ltc6804.o
- .text._write   0x00000000       0x78 bin/ltc6804.o
- .text._set_balance_states
-                0x00000000       0x6a bin/ltc6804.o
- .text.LTC6804_UpdateBalanceStates
-                0x00000000       0x64 bin/ltc6804.o
+ .text._write   0x00000000       0x9c bin/ltc6804.o
+ .text.LTC6804_WriteCFG
+                0x00000000       0x8c bin/ltc6804.o
  .text.LTC6804_Init
-                0x00000000       0xf4 bin/ltc6804.o
- .text._read    0x00000000       0xba bin/ltc6804.o
+                0x00000000      0x100 bin/ltc6804.o
+ .text._read    0x00000000      0x104 bin/ltc6804.o
  .text.LTC6804_VerifyCFG
-                0x00000000       0x56 bin/ltc6804.o
+                0x00000000       0x80 bin/ltc6804.o
  .text.LTC6804_GetCellVoltages
-                0x00000000      0x26e bin/ltc6804.o
+                0x00000000      0x30c bin/ltc6804.o
+ .text._calculate_pec
+                0x00000000       0x3c bin/ltc6804.o
  .text._check_st_results
-                0x00000000       0x50 bin/ltc6804.o
+                0x00000000       0x60 bin/ltc6804.o
  .text.LTC6804_CVST
-                0x00000000       0xd8 bin/ltc6804.o
+                0x00000000       0xdc bin/ltc6804.o
  .text._check_owt
-                0x00000000       0x88 bin/ltc6804.o
+                0x00000000       0xb8 bin/ltc6804.o
  .text.LTC6804_OpenWireTest
-                0x00000000      0x1ac bin/ltc6804.o
+                0x00000000      0x1d8 bin/ltc6804.o
  .bss.owt_up_rx_buf
                 0x00000000      0x1f0 bin/ltc6804.o
  .bss.wake_buf  0x00000000       0x28 bin/ltc6804.o
@@ -1930,14 +1810,14 @@ Discarded input sections
  .bss.owt_time  0x00000000        0x4 bin/ltc6804.o
  .rodata.LTC6804_SELF_TEST_RES
                 0x00000000        0x8 bin/ltc6804.o
- .debug_info    0x00000000     0x1942 bin/ltc6804.o
- .debug_abbrev  0x00000000      0x387 bin/ltc6804.o
- .debug_loc     0x00000000     0x15d5 bin/ltc6804.o
+ .debug_info    0x00000000     0x1a1a bin/ltc6804.o
+ .debug_abbrev  0x00000000      0x3e4 bin/ltc6804.o
+ .debug_loc     0x00000000     0x2112 bin/ltc6804.o
  .debug_aranges
                 0x00000000       0xa0 bin/ltc6804.o
- .debug_ranges  0x00000000      0x1a0 bin/ltc6804.o
+ .debug_ranges  0x00000000      0x308 bin/ltc6804.o
  .debug_macro   0x00000000      0x236 bin/ltc6804.o
- .debug_macro   0x00000000      0x820 bin/ltc6804.o
+ .debug_macro   0x00000000      0x826 bin/ltc6804.o
  .debug_macro   0x00000000       0x22 bin/ltc6804.o
  .debug_macro   0x00000000       0x44 bin/ltc6804.o
  .debug_macro   0x00000000       0xe3 bin/ltc6804.o
@@ -1975,12 +1855,13 @@ Discarded input sections
  .debug_macro   0x00000000       0x10 bin/ltc6804.o
  .debug_macro   0x00000000       0x35 bin/ltc6804.o
  .debug_macro   0x00000000      0x124 bin/ltc6804.o
- .debug_line    0x00000000      0x939 bin/ltc6804.o
- .debug_str     0x00000000     0xa27e bin/ltc6804.o
+ .debug_line    0x00000000      0x9b8 bin/ltc6804.o
+ .debug_str     0x00000000     0xa27b bin/ltc6804.o
  .comment       0x00000000       0x71 bin/ltc6804.o
- .debug_frame   0x00000000      0x290 bin/ltc6804.o
+ .debug_frame   0x00000000      0x2c0 bin/ltc6804.o
  .ARM.attributes
                 0x00000000       0x31 bin/ltc6804.o
+ .group         0x00000000        0x8 bin/mcp2515.o
  .group         0x00000000        0x8 bin/mcp2515.o
  .group         0x00000000        0x8 bin/mcp2515.o
  .group         0x00000000        0x8 bin/mcp2515.o
@@ -2014,40 +1895,40 @@ Discarded input sections
  .text.MCP2515_Init
                 0x00000000       0x5c bin/mcp2515.o
  .text.MCP2515_Read
-                0x00000000       0x78 bin/mcp2515.o
+                0x00000000       0x88 bin/mcp2515.o
  .text.MCP2515_ReadBuffer
-                0x00000000       0x9c bin/mcp2515.o
+                0x00000000       0xa4 bin/mcp2515.o
  .text.MCP2515_Write
-                0x00000000       0x58 bin/mcp2515.o
+                0x00000000       0x5c bin/mcp2515.o
  .text.MCP2515_LoadBuffer
-                0x00000000       0x84 bin/mcp2515.o
+                0x00000000       0x88 bin/mcp2515.o
  .text.MCP2515_LoadBufferData
-                0x00000000       0x68 bin/mcp2515.o
+                0x00000000       0x70 bin/mcp2515.o
  .text.MCP2515_SendBuffer
-                0x00000000       0x64 bin/mcp2515.o
+                0x00000000       0x6c bin/mcp2515.o
  .text.MCP2515_BitModify
-                0x00000000       0x60 bin/mcp2515.o
+                0x00000000       0x70 bin/mcp2515.o
  .text.MCP2515_GetFullReceiveBuffer
-                0x00000000       0x74 bin/mcp2515.o
+                0x00000000       0x7c bin/mcp2515.o
  .text.MCP2515_GetEmptyTransmitBuffer
                 0x00000000       0x78 bin/mcp2515.o
  .text.MCP2515_Mode
-                0x00000000       0x2e bin/mcp2515.o
+                0x00000000       0x34 bin/mcp2515.o
  .text.MCP2515_Reset
-                0x00000000       0x58 bin/mcp2515.o
+                0x00000000       0x5c bin/mcp2515.o
  .text.MCP2515_SetBitRate
-                0x00000000      0x110 bin/mcp2515.o
+                0x00000000      0x12c bin/mcp2515.o
  .bss.Tx_Buf    0x00000000      0x100 bin/mcp2515.o
  .bss.Rx_Buf    0x00000000      0x100 bin/mcp2515.o
  .bss.xf_setup  0x00000000       0x14 bin/mcp2515.o
- .debug_info    0x00000000      0xf15 bin/mcp2515.o
- .debug_abbrev  0x00000000      0x36a bin/mcp2515.o
- .debug_loc     0x00000000      0x99c bin/mcp2515.o
+ .debug_info    0x00000000      0xf17 bin/mcp2515.o
+ .debug_abbrev  0x00000000      0x377 bin/mcp2515.o
+ .debug_loc     0x00000000      0x9c6 bin/mcp2515.o
  .debug_aranges
                 0x00000000       0x80 bin/mcp2515.o
- .debug_ranges  0x00000000      0x230 bin/mcp2515.o
- .debug_macro   0x00000000      0x19f bin/mcp2515.o
- .debug_macro   0x00000000      0x820 bin/mcp2515.o
+ .debug_ranges  0x00000000      0x1d8 bin/mcp2515.o
+ .debug_macro   0x00000000      0x19e bin/mcp2515.o
+ .debug_macro   0x00000000      0x826 bin/mcp2515.o
  .debug_macro   0x00000000       0x22 bin/mcp2515.o
  .debug_macro   0x00000000       0x44 bin/mcp2515.o
  .debug_macro   0x00000000       0xe3 bin/mcp2515.o
@@ -2074,10 +1955,11 @@ Discarded input sections
  .debug_macro   0x00000000      0x21c bin/mcp2515.o
  .debug_macro   0x00000000      0x129 bin/mcp2515.o
  .debug_macro   0x00000000      0x45e bin/mcp2515.o
- .debug_line    0x00000000      0x6c5 bin/mcp2515.o
- .debug_str     0x00000000     0x7fb7 bin/mcp2515.o
+ .debug_macro   0x00000000       0x10 bin/mcp2515.o
+ .debug_line    0x00000000      0x69e bin/mcp2515.o
+ .debug_str     0x00000000     0x7fd7 bin/mcp2515.o
  .comment       0x00000000       0x71 bin/mcp2515.o
- .debug_frame   0x00000000      0x210 bin/mcp2515.o
+ .debug_frame   0x00000000      0x200 bin/mcp2515.o
  .ARM.attributes
                 0x00000000       0x31 bin/mcp2515.o
  COMMON         0x00000000        0x2 bin/mcp2515.o
@@ -2093,7 +1975,7 @@ Discarded input sections
  .data          0x00000000        0x0 bin/util.o
  .bss           0x00000000        0x0 bin/util.o
  .text.__reverse
-                0x00000000       0x14 bin/util.o
+                0x00000000       0x18 bin/util.o
  .debug_info    0x00000000       0xc7 bin/util.o
  .debug_abbrev  0x00000000       0x7d bin/util.o
  .debug_loc     0x00000000       0x5c bin/util.o
@@ -2101,7 +1983,7 @@ Discarded input sections
                 0x00000000       0x20 bin/util.o
  .debug_ranges  0x00000000       0x10 bin/util.o
  .debug_macro   0x00000000       0x7c bin/util.o
- .debug_macro   0x00000000      0x820 bin/util.o
+ .debug_macro   0x00000000      0x826 bin/util.o
  .debug_macro   0x00000000       0x22 bin/util.o
  .debug_macro   0x00000000       0x44 bin/util.o
  .debug_macro   0x00000000       0xe3 bin/util.o
@@ -2109,8 +1991,8 @@ Discarded input sections
  .debug_macro   0x00000000      0x1df bin/util.o
  .debug_macro   0x00000000       0x22 bin/util.o
  .debug_macro   0x00000000       0x6d bin/util.o
- .debug_line    0x00000000      0x1ad bin/util.o
- .debug_str     0x00000000     0x320a bin/util.o
+ .debug_line    0x00000000      0x1af bin/util.o
+ .debug_str     0x00000000     0x3207 bin/util.o
  .comment       0x00000000       0x71 bin/util.o
  .debug_frame   0x00000000       0x20 bin/util.o
  .ARM.attributes
@@ -2156,42 +2038,22 @@ Discarded input sections
  .text          0x00000000        0x0 bin/board.o
  .data          0x00000000        0x0 bin/board.o
  .bss           0x00000000        0x0 bin/board.o
- .text.CAN_IRQHandler
-                0x00000000       0x14 bin/board.o
- .text.Board_SysTick_Init
-                0x00000000       0x48 bin/board.o
- .text.Board_LEDs_Init
-                0x00000000       0x1a bin/board.o
+ .text.LED_Off  0x00000000       0x1c bin/board.o
  .text.Board_SPI_Init
                 0x00000000       0x18 bin/board.o
  .text.SSP_Buffer_Init
                 0x00000000       0x24 bin/board.o
- .text.Board_UART_Init
-                0x00000000       0x38 bin/board.o
- .text.Board_UART_Print
-                0x00000000       0x18 bin/board.o
- .text.Board_UART_Println
-                0x00000000       0x14 bin/board.o
- .text.Board_UART_PrintNum
-                0x00000000       0x2c bin/board.o
  .text.Board_UART_SendBlocking
                 0x00000000       0x14 bin/board.o
- .text.Board_UART_Read
-                0x00000000       0x18 bin/board.o
  .text.CAN_baudrate_calculate
-                0x00000000       0x7c bin/board.o
+                0x00000000       0x8c bin/board.o
  .text.Board_CAN_Init
                 0x00000000       0x48 bin/board.o
- .rodata.OscRateIn
-                0x00000000        0x4 bin/board.o
  .bss.SSP_Rx_Buf
                 0x00000000      0x100 bin/board.o
- .rodata.str1.1
-                0x00000000        0x3 bin/board.o
- .bss.str.6455  0x00000000       0x20 bin/board.o
  .bss.SSP_Tx_Buf
                 0x00000000      0x100 bin/board.o
- .debug_macro   0x00000000      0x820 bin/board.o
+ .debug_macro   0x00000000      0x826 bin/board.o
  .debug_macro   0x00000000       0x22 bin/board.o
  .debug_macro   0x00000000       0x44 bin/board.o
  .debug_macro   0x00000000       0xe3 bin/board.o
@@ -2270,26 +2132,7 @@ Discarded input sections
  .data          0x00000000        0x0 bin/main.o
  .bss           0x00000000        0x0 bin/main.o
  .text._delay   0x00000000       0x14 bin/main.o
- .text.startup.main
-                0x00000000      0x180 bin/main.o
- .bss.uart_rx_buffer
-                0x00000000        0x8 bin/main.o
- .bss.can_error_info
-                0x00000000        0x4 bin/main.o
- .rodata.str1.1
-                0x00000000       0x99 bin/main.o
- .bss.can_error_flag
-                0x00000000        0x1 bin/main.o
- .bss.msg_obj   0x00000000       0x18 bin/main.o
- .bss.str       0x00000000       0x64 bin/main.o
- .debug_info    0x00000000      0xac5 bin/main.o
- .debug_abbrev  0x00000000      0x2f1 bin/main.o
- .debug_loc     0x00000000       0x53 bin/main.o
- .debug_aranges
-                0x00000000       0x28 bin/main.o
- .debug_ranges  0x00000000       0x30 bin/main.o
- .debug_macro   0x00000000      0x23d bin/main.o
- .debug_macro   0x00000000      0x820 bin/main.o
+ .debug_macro   0x00000000      0x826 bin/main.o
  .debug_macro   0x00000000       0x22 bin/main.o
  .debug_macro   0x00000000       0x44 bin/main.o
  .debug_macro   0x00000000       0xe3 bin/main.o
@@ -2327,12 +2170,6 @@ Discarded input sections
  .debug_macro   0x00000000       0x10 bin/main.o
  .debug_macro   0x00000000       0x35 bin/main.o
  .debug_macro   0x00000000       0xa0 bin/main.o
- .debug_line    0x00000000      0x400 bin/main.o
- .debug_str     0x00000000     0x9f0a bin/main.o
- .comment       0x00000000       0x71 bin/main.o
- .debug_frame   0x00000000       0x4c bin/main.o
- .ARM.attributes
-                0x00000000       0x31 bin/main.o
  .group         0x00000000        0x8 bin/sysinit.o
  .group         0x00000000        0x8 bin/sysinit.o
  .group         0x00000000        0x8 bin/sysinit.o
@@ -2362,9 +2199,7 @@ Discarded input sections
  .text          0x00000000        0x0 bin/sysinit.o
  .data          0x00000000        0x0 bin/sysinit.o
  .bss           0x00000000        0x0 bin/sysinit.o
- .data.SystemCoreClock
-                0x00000000        0x4 bin/sysinit.o
- .debug_macro   0x00000000      0x820 bin/sysinit.o
+ .debug_macro   0x00000000      0x826 bin/sysinit.o
  .debug_macro   0x00000000       0x22 bin/sysinit.o
  .debug_macro   0x00000000       0x44 bin/sysinit.o
  .debug_macro   0x00000000       0xe3 bin/sysinit.o
@@ -2390,17 +2225,10 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/sysinit.o
  .debug_macro   0x00000000      0x21c bin/sysinit.o
  .debug_macro   0x00000000      0x129 bin/sysinit.o
- .text          0x00000000      0x120 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
  .data          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
  .bss           0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
- .debug_frame   0x00000000       0x20 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
- .ARM.attributes
-                0x00000000       0x1e /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
- .text          0x00000000        0x4 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
  .data          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
  .bss           0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
- .ARM.attributes
-                0x00000000       0x1e /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
  .text          0x00000000       0x40 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_aeabi_uldivmod.o)
  .data          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_aeabi_uldivmod.o)
  .bss           0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_aeabi_uldivmod.o)
@@ -2501,18 +2329,9 @@ Discarded input sections
  .text          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
  .data          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
  .bss           0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
- .text.__itoa   0x00000000       0x30 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
- .text.itoa     0x00000000        0x8 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
- .debug_frame   0x00000000       0x40 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
- .ARM.attributes
-                0x00000000       0x2c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
  .text          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
  .data          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
  .bss           0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
- .text.memcpy   0x00000000       0x7c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
- .debug_frame   0x00000000       0x2c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
- .ARM.attributes
-                0x00000000       0x2c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
  .text          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memset.o)
  .data          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memset.o)
  .bss           0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memset.o)
@@ -2523,20 +2342,10 @@ Discarded input sections
  .text          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
  .data          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
  .bss           0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
- .text.strlen   0x00000000       0x68 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
- .debug_frame   0x00000000       0x28 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
- .ARM.attributes
-                0x00000000       0x2c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
  .text          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
  .data          0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
  .bss           0x00000000        0x0 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
- .text.__utoa   0x00000000       0x8c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
  .text.utoa     0x00000000        0x8 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
- .rodata.str1.4
-                0x00000000       0x25 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
- .debug_frame   0x00000000       0x54 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
- .ARM.attributes
-                0x00000000       0x2c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
 
 Memory Configuration
 
@@ -2582,43 +2391,138 @@ LOAD /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6
 LOAD /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libc.a
 END GROUP
 
-.text           0x00000000      0x184
+.text           0x00000000      0xc88
  *(.isr_vector)
- .isr_vector    0x00000000       0xc8 bin/startup_LPC11xx.o
+ .isr_vector    0x00000000       0xe0 bin/startup_LPC11xx.o
                 0x00000000                __isr_vector
                 0x000000c0                Reset_Handler
  *(.text*)
- .text          0x000000c8        0xc bin/startup_LPC11xx.o
-                0x000000c8                NMI_Handler
-                0x000000ca                HardFault_Handler
-                0x000000cc                SVC_Handler
-                0x000000ce                PendSV_Handler
-                0x000000d2                TIMER16_0_IRQHandler
-                0x000000d2                UART_IRQHandler
-                0x000000d2                TIMER32_0_IRQHandler
-                0x000000d2                TIMER32_1_IRQHandler
-                0x000000d2                PIOINT1_IRQHandler
-                0x000000d2                SSP0_IRQHandler
-                0x000000d2                TIMER16_1_IRQHandler
-                0x000000d2                Default_Handler
-                0x000000d2                ADC_IRQHandler
-                0x000000d2                SSP1_IRQHandler
-                0x000000d2                PIOINT2_IRQHandler
-                0x000000d2                BOD_IRQHandler
-                0x000000d2                WAKEUP_IRQHandler
-                0x000000d2                PIOINT0_IRQHandler
-                0x000000d2                I2C_IRQHandler
-                0x000000d2                WDT_IRQHandler
-                0x000000d2                PIOINT3_IRQHandler
+ .text          0x000000e0        0xc bin/startup_LPC11xx.o
+                0x000000e0                NMI_Handler
+                0x000000e2                HardFault_Handler
+                0x000000e4                SVC_Handler
+                0x000000e6                PendSV_Handler
+                0x000000ea                TIMER16_0_IRQHandler
+                0x000000ea                UART_IRQHandler
+                0x000000ea                TIMER32_0_IRQHandler
+                0x000000ea                TIMER32_1_IRQHandler
+                0x000000ea                PIOINT1_IRQHandler
+                0x000000ea                SSP0_IRQHandler
+                0x000000ea                TIMER16_1_IRQHandler
+                0x000000ea                Default_Handler
+                0x000000ea                ADC_IRQHandler
+                0x000000ea                SSP1_IRQHandler
+                0x000000ea                PIOINT2_IRQHandler
+                0x000000ea                BOD_IRQHandler
+                0x000000ea                WAKEUP_IRQHandler
+                0x000000ea                PIOINT0_IRQHandler
+                0x000000ea                I2C_IRQHandler
+                0x000000ea                WDT_IRQHandler
+                0x000000ea                PIOINT3_IRQHandler
+ .text.SystemCoreClockUpdate
+                0x000000ec       0x10 bin/chip_11xx.o
+                0x000000ec                SystemCoreClockUpdate
+ .text.Chip_Clock_GetSystemPLLOutClockRate
+                0x000000fc       0x40 bin/clock_11xx.o
+                0x000000fc                Chip_Clock_GetSystemPLLOutClockRate
+ .text.Chip_Clock_GetMainClockRate
+                0x0000013c       0x5c bin/clock_11xx.o
+                0x0000013c                Chip_Clock_GetMainClockRate
+ .text.Chip_Clock_GetSystemClockRate
+                0x00000198       0x14 bin/clock_11xx.o
+                0x00000198                Chip_Clock_GetSystemClockRate
+ .text.Chip_GPIO_Init
+                0x000001ac       0x14 bin/gpio_11xx_2.o
+                0x000001ac                Chip_GPIO_Init
+ .text.Chip_GPIO_WriteDirBit
+                0x000001c0       0x28 bin/gpio_11xx_2.o
+                0x000001c0                Chip_GPIO_WriteDirBit
+ .text.RingBuffer_Init
+                0x000001e8       0x10 bin/ring_buffer.o
+                0x000001e8                RingBuffer_Init
+ .text.RingBuffer_Insert
+                0x000001f8       0x48 bin/ring_buffer.o
+                0x000001f8                RingBuffer_Insert
+ .text.RingBuffer_Pop
+                0x00000240       0x34 bin/ring_buffer.o
+                0x00000240                RingBuffer_Pop
+ .text.Chip_UART_Init
+                0x00000274       0x28 bin/uart_11xx.o
+                0x00000274                Chip_UART_Init
+ .text.Chip_UART_SendBlocking
+                0x0000029c       0x2c bin/uart_11xx.o
+                0x0000029c                Chip_UART_SendBlocking
+ .text.Chip_UART_Read
+                0x000002c8       0x30 bin/uart_11xx.o
+                0x000002c8                Chip_UART_Read
+ .text.Chip_UART_SetBaud
+                0x000002f8       0x38 bin/uart_11xx.o
+                0x000002f8                Chip_UART_SetBaud
+ .text.CAN_error
+                0x00000330       0x14 bin/can.o
+                0x00000330                CAN_error
+ .text.CAN_rx   0x00000344       0x28 bin/can.o
+                0x00000344                CAN_rx
+ .text.CAN_tx   0x0000036c       0x30 bin/can.o
+                0x0000036c                CAN_tx
+ .text.Baudrate_Calculate
+                0x0000039c       0x8c bin/can.o
+                0x0000039c                Baudrate_Calculate
  .text.CAN_IRQHandler
-                0x000000d4       0x14 bin/can.o
-                0x000000d4                CAN_IRQHandler
+                0x00000428       0x14 bin/can.o
+                0x00000428                CAN_IRQHandler
+ .text.CAN_Init
+                0x0000043c       0xb4 bin/can.o
+                0x0000043c                CAN_Init
  .text.SysTick_Handler
-                0x000000e8       0x10 bin/board.o
-                0x000000e8                SysTick_Handler
+                0x000004f0       0x10 bin/board.o
+                0x000004f0                SysTick_Handler
+ .text.Board_SysTick_Init
+                0x00000500       0x48 bin/board.o
+                0x00000500                Board_SysTick_Init
+ .text.Board_LEDs_Init
+                0x00000548       0x1c bin/board.o
+                0x00000548                Board_LEDs_Init
+ .text.LED_On   0x00000564       0x1c bin/board.o
+                0x00000564                LED_On
+ .text.Board_UART_Init
+                0x00000580       0x38 bin/board.o
+                0x00000580                Board_UART_Init
+ .text.Board_UART_Print
+                0x000005b8       0x18 bin/board.o
+                0x000005b8                Board_UART_Print
+ .text.Board_UART_Println
+                0x000005d0       0x14 bin/board.o
+                0x000005d0                Board_UART_Println
+ .text.Board_UART_PrintNum
+                0x000005e4       0x2c bin/board.o
+                0x000005e4                Board_UART_PrintNum
+ .text.Board_UART_Read
+                0x00000610       0x18 bin/board.o
+                0x00000610                Board_UART_Read
+ .text.startup.main
+                0x00000628      0x194 bin/main.o
+                0x00000628                main
  .text.SystemInit
-                0x000000f8       0x8c bin/sysinit.o
-                0x000000f8                SystemInit
+                0x000007bc       0x7c bin/sysinit.o
+                0x000007bc                SystemInit
+ .text          0x00000838      0x120 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
+                0x00000838                __udivsi3
+                0x00000838                __aeabi_uidiv
+                0x00000944                __aeabi_uidivmod
+ .text          0x00000958        0x4 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
+                0x00000958                __aeabi_ldiv0
+                0x00000958                __aeabi_idiv0
+ .text.__itoa   0x0000095c       0x30 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
+                0x0000095c                __itoa
+ .text.itoa     0x0000098c        0x8 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
+                0x0000098c                itoa
+ .text.memcpy   0x00000994       0x7c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
+                0x00000994                memcpy
+ .text.strlen   0x00000a10       0x68 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
+                0x00000a10                strlen
+ .text.__utoa   0x00000a78       0x8c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
+                0x00000a78                __utoa
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -2632,38 +2536,54 @@ END GROUP
  *(SORT(.dtors.*))
  *(.dtors)
  *(.rodata*)
+ .rodata.wdtOSCRate
+                0x00000b04       0x40 bin/clock_11xx.o
+ .rodata        0x00000b44       0x20 bin/can.o
+ .rodata.OscRateIn
+                0x00000b64        0x4 bin/board.o
+                0x00000b64                OscRateIn
+ .rodata.str1.4
+                0x00000b68        0x3 bin/board.o
+ *fill*         0x00000b6b        0x1 
+ .rodata.main   0x00000b6c       0x48 bin/main.o
+ .rodata.str1.4
+                0x00000bb4       0xab bin/main.o
+ *fill*         0x00000c5f        0x1 
+ .rodata.str1.4
+                0x00000c60       0x28 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
+                                 0x25 (size before relaxing)
  *(.eh_frame*)
 
-.glue_7         0x00000184        0x0
+.glue_7         0x00000c88        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x00000184        0x0
+.glue_7t        0x00000c88        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x00000184        0x0
+.vfp11_veneer   0x00000c88        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x00000184        0x0
+.v4_bx          0x00000c88        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x00000184        0x0
+.iplt           0x00000c88        0x0
  .iplt          0x00000000        0x0 bin/startup_LPC11xx.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x00000184                __exidx_start = .
+                0x00000c88                __exidx_start = .
 
-.ARM.exidx      0x00000184        0x8
+.ARM.exidx      0x00000c88        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
  .ARM.exidx.isr_vector
-                0x00000184        0x8 bin/startup_LPC11xx.o
-                0x0000018c                __exidx_end = .
-                0x0000018c                __etext = .
+                0x00000c88        0x8 bin/startup_LPC11xx.o
+                0x00000c90                __exidx_end = .
+                0x00000c90                __etext = .
 
-.rel.dyn        0x0000018c        0x0
+.rel.dyn        0x00000c90        0x0
  .rel.iplt      0x00000000        0x0 bin/startup_LPC11xx.o
 
-.data           0x10000100        0x0 load address 0x0000018c
+.data           0x10000100        0x0 load address 0x00000c90
                 0x10000100                __data_start__ = .
  *(vtable)
  *(.data*)
@@ -2688,105 +2608,239 @@ END GROUP
 .igot.plt       0x10000100        0x0
  .igot.plt      0x00000000        0x0 bin/startup_LPC11xx.o
 
-.bss            0x10000100        0x4
+.bss            0x10000100      0x238
                 0x10000100                . = ALIGN (0x4)
                 0x10000100                __bss_start__ = .
  *(.bss*)
+ .bss.tx_buffer
+                0x10000100       0x14 bin/can.o
+ .bss.rx_buffer
+                0x10000114       0x14 bin/can.o
+ .bss.can_error_info
+                0x10000128        0x4 bin/can.o
+ .bss.can_error_flag
+                0x1000012c        0x1 bin/can.o
+ *fill*         0x1000012d        0x3 
+ .bss.str.6456  0x10000130       0x20 bin/board.o
+ .bss.can_error_flag
+                0x10000150        0x1 bin/main.o
+ *fill*         0x10000151        0x3 
+ .bss.uart_rx_buffer
+                0x10000154        0x8 bin/main.o
+ .bss.can_error_info
+                0x1000015c        0x4 bin/main.o
+ .bss.msg_obj   0x10000160       0x18 bin/main.o
  *(COMMON)
- COMMON         0x10000100        0x4 bin/board.o
-                0x10000100                msTicks
-                0x10000104                . = ALIGN (0x4)
-                0x10000104                __bss_end__ = .
+ COMMON         0x10000178        0x4 bin/chip_11xx.o
+                0x10000178                SystemCoreClock
+ *fill*         0x1000017c        0x4 
+ COMMON         0x10000180      0x1b0 bin/can.o
+                0x10000180                tmp_msg_obj
+                0x10000198                _tx_buffer
+                0x10000258                _rx_buffer
+                0x10000318                msg_obj
+ COMMON         0x10000330        0x4 bin/board.o
+                0x10000330                msTicks
+ COMMON         0x10000334        0x4 bin/sysinit.o
+                0x10000334                TicksPerMS
+                0x10000338                . = ALIGN (0x4)
+                0x10000338                __bss_end__ = .
 
-.heap           0x10000104        0x0
-                0x10000104                __end__ = .
-                0x10000104                PROVIDE (end, .)
- *(.heap*)
-                0x10000104                __HeapLimit = .
-
-.stack_dummy    0x10000108      0x200
+.stack_dummy    0x10000338      0x200
  *(.stack*)
- .stack         0x10000108      0x200 bin/startup_LPC11xx.o
+ .stack         0x10000338      0x200 bin/startup_LPC11xx.o
                 0x10002000                __StackTop = (ORIGIN (RAM) + 0x1f00)
                 0x10001e00                __StackLimit = (__StackTop - SIZEOF (.stack_dummy))
                 0x10002000                PROVIDE (__stack, __StackTop)
-                0x00000001                ASSERT ((__StackLimit >= __HeapLimit), region RAM overflowed with stack)
-OUTPUT(bin/BCM.elf elf32-littlearm)
+OUTPUT(bin/opel_user_interface.elf elf32-littlearm)
 
 .ARM.attributes
                 0x00000000       0x2d
  .ARM.attributes
                 0x00000000       0x21 bin/startup_LPC11xx.o
  .ARM.attributes
-                0x00000021       0x31 bin/can.o
+                0x00000021       0x31 bin/chip_11xx.o
  .ARM.attributes
-                0x00000052       0x31 bin/board.o
+                0x00000052       0x31 bin/clock_11xx.o
  .ARM.attributes
-                0x00000083       0x31 bin/sysinit.o
+                0x00000083       0x31 bin/gpio_11xx_2.o
+ .ARM.attributes
+                0x000000b4       0x31 bin/ring_buffer.o
+ .ARM.attributes
+                0x000000e5       0x31 bin/uart_11xx.o
+ .ARM.attributes
+                0x00000116       0x31 bin/can.o
+ .ARM.attributes
+                0x00000147       0x31 bin/board.o
+ .ARM.attributes
+                0x00000178       0x31 bin/main.o
+ .ARM.attributes
+                0x000001a9       0x31 bin/sysinit.o
+ .ARM.attributes
+                0x000001da       0x1e /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x000001f8       0x1e /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x00000216       0x2c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
+ .ARM.attributes
+                0x00000242       0x2c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
+ .ARM.attributes
+                0x0000026e       0x2c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
+ .ARM.attributes
+                0x0000029a       0x2c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
 
 .comment        0x00000000       0x70
- .comment       0x00000000       0x70 bin/can.o
+ .comment       0x00000000       0x70 bin/chip_11xx.o
                                  0x71 (size before relaxing)
+ .comment       0x00000000       0x71 bin/clock_11xx.o
+ .comment       0x00000000       0x71 bin/gpio_11xx_2.o
+ .comment       0x00000000       0x71 bin/ring_buffer.o
+ .comment       0x00000000       0x71 bin/uart_11xx.o
+ .comment       0x00000000       0x71 bin/can.o
  .comment       0x00000000       0x71 bin/board.o
+ .comment       0x00000000       0x71 bin/main.o
  .comment       0x00000000       0x71 bin/sysinit.o
 
-.debug_line     0x00000000      0xe52
- .debug_line    0x00000000       0x88 bin/startup_LPC11xx.o
- .debug_line    0x00000088      0x579 bin/can.o
- .debug_line    0x00000601      0x559 bin/board.o
- .debug_line    0x00000b5a      0x2f8 bin/sysinit.o
+.debug_line     0x00000000     0x26fd
+ .debug_line    0x00000000       0x94 bin/startup_LPC11xx.o
+ .debug_line    0x00000094      0x2eb bin/chip_11xx.o
+ .debug_line    0x0000037f      0x40a bin/clock_11xx.o
+ .debug_line    0x00000789      0x416 bin/gpio_11xx_2.o
+ .debug_line    0x00000b9f      0x313 bin/ring_buffer.o
+ .debug_line    0x00000eb2      0x628 bin/uart_11xx.o
+ .debug_line    0x000014da      0x58e bin/can.o
+ .debug_line    0x00001a68      0x5a2 bin/board.o
+ .debug_line    0x0000200a      0x3f4 bin/main.o
+ .debug_line    0x000023fe      0x2ff bin/sysinit.o
 
-.debug_info     0x00000000     0x373c
+.debug_info     0x00000000     0x70d0
  .debug_info    0x00000000       0x93 bin/startup_LPC11xx.o
- .debug_info    0x00000093     0x1771 bin/can.o
- .debug_info    0x00001804     0x1a06 bin/board.o
- .debug_info    0x0000320a      0x532 bin/sysinit.o
+ .debug_info    0x00000093       0xe7 bin/chip_11xx.o
+ .debug_info    0x0000017a      0x978 bin/clock_11xx.o
+ .debug_info    0x00000af2      0xc60 bin/gpio_11xx_2.o
+ .debug_info    0x00001752      0x4a1 bin/ring_buffer.o
+ .debug_info    0x00001bf3     0x13a4 bin/uart_11xx.o
+ .debug_info    0x00002f97     0x17a0 bin/can.o
+ .debug_info    0x00004737     0x1af5 bin/board.o
+ .debug_info    0x0000622c      0x98e bin/main.o
+ .debug_info    0x00006bba      0x516 bin/sysinit.o
 
-.debug_abbrev   0x00000000      0x94c
+.debug_abbrev   0x00000000     0x1646
  .debug_abbrev  0x00000000       0x12 bin/startup_LPC11xx.o
- .debug_abbrev  0x00000012      0x3dd bin/can.o
- .debug_abbrev  0x000003ef      0x46f bin/board.o
- .debug_abbrev  0x0000085e       0xee bin/sysinit.o
+ .debug_abbrev  0x00000012       0x9b bin/chip_11xx.o
+ .debug_abbrev  0x000000ad      0x295 bin/clock_11xx.o
+ .debug_abbrev  0x00000342      0x1f5 bin/gpio_11xx_2.o
+ .debug_abbrev  0x00000537      0x18b bin/ring_buffer.o
+ .debug_abbrev  0x000006c2      0x3a1 bin/uart_11xx.o
+ .debug_abbrev  0x00000a63      0x43b bin/can.o
+ .debug_abbrev  0x00000e9e      0x46f bin/board.o
+ .debug_abbrev  0x0000130d      0x27a bin/main.o
+ .debug_abbrev  0x00001587       0xbf bin/sysinit.o
 
-.debug_aranges  0x00000000      0x160
+.debug_aranges  0x00000000      0x328
  .debug_aranges
                 0x00000000       0x28 bin/startup_LPC11xx.o
  .debug_aranges
-                0x00000028       0x90 bin/can.o
+                0x00000028       0x20 bin/chip_11xx.o
  .debug_aranges
-                0x000000b8       0x88 bin/board.o
+                0x00000048       0x68 bin/clock_11xx.o
  .debug_aranges
-                0x00000140       0x20 bin/sysinit.o
+                0x000000b0       0x50 bin/gpio_11xx_2.o
+ .debug_aranges
+                0x00000100       0x40 bin/ring_buffer.o
+ .debug_aranges
+                0x00000140       0x80 bin/uart_11xx.o
+ .debug_aranges
+                0x000001c0       0x90 bin/can.o
+ .debug_aranges
+                0x00000250       0x90 bin/board.o
+ .debug_aranges
+                0x000002e0       0x28 bin/main.o
+ .debug_aranges
+                0x00000308       0x20 bin/sysinit.o
 
-.debug_ranges   0x00000000      0x200
+.debug_ranges   0x00000000      0x710
  .debug_ranges  0x00000000       0x20 bin/startup_LPC11xx.o
- .debug_ranges  0x00000020       0xe0 bin/can.o
- .debug_ranges  0x00000100       0xf0 bin/board.o
- .debug_ranges  0x000001f0       0x10 bin/sysinit.o
+ .debug_ranges  0x00000020       0x10 bin/chip_11xx.o
+ .debug_ranges  0x00000030       0xa0 bin/clock_11xx.o
+ .debug_ranges  0x000000d0       0xe0 bin/gpio_11xx_2.o
+ .debug_ranges  0x000001b0       0x80 bin/ring_buffer.o
+ .debug_ranges  0x00000230      0x298 bin/uart_11xx.o
+ .debug_ranges  0x000004c8      0x108 bin/can.o
+ .debug_ranges  0x000005d0      0x118 bin/board.o
+ .debug_ranges  0x000006e8       0x18 bin/main.o
+ .debug_ranges  0x00000700       0x10 bin/sysinit.o
 
-.debug_loc      0x00000000      0x776
- .debug_loc     0x00000000      0x393 bin/can.o
- .debug_loc     0x00000393      0x39f bin/board.o
- .debug_loc     0x00000732       0x44 bin/sysinit.o
+.debug_macro    0x00000000     0x1839
+ .debug_macro   0x00000000      0x160 bin/chip_11xx.o
+ .debug_macro   0x00000160      0x160 bin/clock_11xx.o
+ .debug_macro   0x000002c0      0x160 bin/gpio_11xx_2.o
+ .debug_macro   0x00000420      0x129 bin/ring_buffer.o
+ .debug_macro   0x00000549       0x58 bin/ring_buffer.o
+ .debug_macro   0x000005a1       0x35 bin/ring_buffer.o
+ .debug_macro   0x000005d6       0x9c bin/ring_buffer.o
+ .debug_macro   0x00000672      0x166 bin/ring_buffer.o
+ .debug_macro   0x000007d8       0x4a bin/ring_buffer.o
+ .debug_macro   0x00000822       0x52 bin/ring_buffer.o
+ .debug_macro   0x00000874       0x16 bin/ring_buffer.o
+ .debug_macro   0x0000088a       0x43 bin/ring_buffer.o
+ .debug_macro   0x000008cd      0x180 bin/ring_buffer.o
+ .debug_macro   0x00000a4d      0x29d bin/ring_buffer.o
+ .debug_macro   0x00000cea       0x10 bin/ring_buffer.o
+ .debug_macro   0x00000cfa       0x35 bin/ring_buffer.o
+ .debug_macro   0x00000d2f       0x66 bin/ring_buffer.o
+ .debug_macro   0x00000d95       0x10 bin/ring_buffer.o
+ .debug_macro   0x00000da5      0x160 bin/uart_11xx.o
+ .debug_macro   0x00000f05      0x218 bin/can.o
+ .debug_macro   0x0000111d      0x22b bin/board.o
+ .debug_macro   0x00001348       0xa0 bin/board.o
+ .debug_macro   0x000013e8      0x23d bin/main.o
+ .debug_macro   0x00001625      0x214 bin/sysinit.o
 
-.debug_macro    0x00000000      0x6f3
- .debug_macro   0x00000000      0x218 bin/can.o
- .debug_macro   0x00000218      0x225 bin/board.o
- .debug_macro   0x0000043d       0xa0 bin/board.o
- .debug_macro   0x000004dd      0x216 bin/sysinit.o
+.debug_str      0x00000000     0xbb93
+ .debug_str     0x00000000     0x7091 bin/chip_11xx.o
+                               0x725e (size before relaxing)
+ .debug_str     0x00007091      0x7e7 bin/clock_11xx.o
+                               0x7a04 (size before relaxing)
+ .debug_str     0x00007878      0x45c bin/gpio_11xx_2.o
+                               0x78ec (size before relaxing)
+ .debug_str     0x00007cd4     0x25ae bin/ring_buffer.o
+                               0x584a (size before relaxing)
+ .debug_str     0x0000a282      0x310 bin/uart_11xx.o
+                               0x7a28 (size before relaxing)
+ .debug_str     0x0000a592      0x987 bin/can.o
+                               0xa5a3 (size before relaxing)
+ .debug_str     0x0000af19      0x8f1 bin/board.o
+                               0xaacd (size before relaxing)
+ .debug_str     0x0000b80a       0x94 bin/main.o
+                               0x9ebc (size before relaxing)
+ .debug_str     0x0000b89e      0x2f5 bin/sysinit.o
+                               0x778d (size before relaxing)
 
-.debug_str      0x00000000     0xafee
- .debug_str     0x00000000     0xa2d9 bin/can.o
-                               0xa5a6 (size before relaxing)
- .debug_str     0x0000a2d9      0xa3a bin/board.o
-                               0xaa84 (size before relaxing)
- .debug_str     0x0000ad13      0x2db bin/sysinit.o
-                               0x7780 (size before relaxing)
+.debug_frame    0x00000000      0x8d8
+ .debug_frame   0x00000000       0x2c bin/chip_11xx.o
+ .debug_frame   0x0000002c       0xd8 bin/clock_11xx.o
+ .debug_frame   0x00000104       0xa4 bin/gpio_11xx_2.o
+ .debug_frame   0x000001a8       0xd8 bin/ring_buffer.o
+ .debug_frame   0x00000280      0x1c8 bin/uart_11xx.o
+ .debug_frame   0x00000448      0x17c bin/can.o
+ .debug_frame   0x000005c4      0x198 bin/board.o
+ .debug_frame   0x0000075c       0x54 bin/main.o
+ .debug_frame   0x000007b0       0x20 bin/sysinit.o
+ .debug_frame   0x000007d0       0x20 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
+ .debug_frame   0x000007f0       0x40 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
+ .debug_frame   0x00000830       0x2c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
+ .debug_frame   0x0000085c       0x28 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
+ .debug_frame   0x00000884       0x54 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
 
-.debug_frame    0x00000000      0x344
- .debug_frame   0x00000000      0x18c bin/can.o
- .debug_frame   0x0000018c      0x18c bin/board.o
- .debug_frame   0x00000318       0x2c bin/sysinit.o
+.debug_loc      0x00000000     0x24fa
+ .debug_loc     0x00000000      0x16e bin/clock_11xx.o
+ .debug_loc     0x0000016e      0x5a1 bin/gpio_11xx_2.o
+ .debug_loc     0x0000070f      0x632 bin/ring_buffer.o
+ .debug_loc     0x00000d41      0xcb3 bin/uart_11xx.o
+ .debug_loc     0x000019f4      0x5a7 bin/can.o
+ .debug_loc     0x00001f9b      0x50c bin/board.o
+ .debug_loc     0x000024a7       0x53 bin/main.o
 
 Cross Reference Table
 
@@ -2821,8 +2875,7 @@ Brusa_MakeCTL                                     bin/brusa.o
 CAN_GetErrorStatus                                bin/can.o
 CAN_GetRxErrorCount                               bin/can.o
 CAN_GetTxErrorCount                               bin/can.o
-CAN_IRQHandler                                    bin/board.o
-                                                  bin/can.o
+CAN_IRQHandler                                    bin/can.o
                                                   bin/startup_LPC11xx.o
 CAN_Init                                          bin/can.o
                                                   bin/main.o
@@ -2962,6 +3015,9 @@ LC1024_ReadStatusReg                              bin/lc1024.o
 LC1024_WriteDisable                               bin/lc1024.o
 LC1024_WriteEnable                                bin/lc1024.o
 LC1024_WriteMem                                   bin/lc1024.o
+LED_Off                                           bin/board.o
+LED_On                                            bin/board.o
+                                                  bin/main.o
 LTC6804_CVST                                      bin/ltc6804.o
 LTC6804_ClearCellVoltages                         bin/ltc6804.o
 LTC6804_GetCellVoltages                           bin/ltc6804.o
@@ -3025,6 +3081,7 @@ TIMER16_0_IRQHandler                              bin/startup_LPC11xx.o
 TIMER16_1_IRQHandler                              bin/startup_LPC11xx.o
 TIMER32_0_IRQHandler                              bin/startup_LPC11xx.o
 TIMER32_1_IRQHandler                              bin/startup_LPC11xx.o
+TicksPerMS                                        bin/sysinit.o
 UART_IRQHandler                                   bin/startup_LPC11xx.o
 WAKEUP_IRQHandler                                 bin/startup_LPC11xx.o
 WDT_IRQHandler                                    bin/startup_LPC11xx.o
@@ -3074,6 +3131,8 @@ __aeabi_uidivmod                                  /usr/bin/../lib/gcc/arm-none-e
                                                   bin/ring_buffer.o
 __aeabi_uldivmod                                  /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_aeabi_uldivmod.o)
                                                   bin/mcp2515.o
+__bss_end__                                       bin/startup_LPC11xx.o
+__bss_start__                                     bin/startup_LPC11xx.o
 __clzdi2                                          /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_clzdi2.o)
                                                   /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivdi3.o)
                                                   /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_divdi3.o)
@@ -3121,7 +3180,6 @@ _int_pin                                          bin/mcp2515.o
 _read                                             bin/ltc6804.o
 _rx_buffer                                        bin/can.o
 _set_balance_states                               bin/ltc6804.o
-_start                                            bin/startup_LPC11xx.o
 _tx_buffer                                        bin/can.o
 _wake                                             bin/ltc6804.o
 _write                                            bin/ltc6804.o
@@ -3130,9 +3188,9 @@ getSlaveIndex                                     bin/i2c_11xx.o
 handleMasterXferState                             bin/i2c_11xx.o
 handleSlaveXferState                              bin/i2c_11xx.o
 itoa                                              /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
-                                                  bin/main.o
                                                   bin/board.o
 main                                              bin/main.o
+                                                  bin/startup_LPC11xx.o
 memcpy                                            /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
                                                   bin/ltc6804.o
                                                   bin/ring_buffer.o

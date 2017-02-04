@@ -1,12 +1,12 @@
-bin/sysinit.o: src/sysinit.c \
+bin/can.o: ../../lpc11cx4-library/evt_lib/src/can.c \
+ ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/chip.h \
+ ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/lpc_types.h \
  /usr/lib/gcc/arm-none-eabi/4.9.3/include/stdint.h \
  /usr/arm-none-eabi/include/stdint.h \
  /usr/arm-none-eabi/include/machine/_default_types.h \
  /usr/arm-none-eabi/include/sys/features.h \
  /usr/arm-none-eabi/include/sys/_intsup.h \
  /usr/arm-none-eabi/include/sys/_stdint.h \
- ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/chip.h \
- ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/lpc_types.h \
  /usr/lib/gcc/arm-none-eabi/4.9.3/include/stdbool.h \
  ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/sys_config.h \
  ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/cmsis.h \
@@ -29,7 +29,24 @@ bin/sysinit.o: src/sysinit.c \
  ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/adc_11xx.h \
  ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/gpio_11xx_2.h \
  ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/i2c_11xx.h \
- ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/ccand_11xx.h src/sysinit.h
+ ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/ccand_11xx.h \
+ /usr/arm-none-eabi/include/string.h /usr/arm-none-eabi/include/_ansi.h \
+ /usr/arm-none-eabi/include/newlib.h \
+ /usr/arm-none-eabi/include/sys/config.h \
+ /usr/arm-none-eabi/include/machine/ieeefp.h \
+ /usr/arm-none-eabi/include/sys/reent.h \
+ /usr/arm-none-eabi/include/_ansi.h \
+ /usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h \
+ /usr/arm-none-eabi/include/sys/_types.h \
+ /usr/arm-none-eabi/include/machine/_types.h \
+ /usr/arm-none-eabi/include/sys/lock.h \
+ /usr/arm-none-eabi/include/sys/cdefs.h \
+ /usr/arm-none-eabi/include/sys/string.h \
+ ../../lpc11cx4-library/evt_lib/inc/can.h
+
+../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/chip.h:
+
+../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/lpc_types.h:
 
 /usr/lib/gcc/arm-none-eabi/4.9.3/include/stdint.h:
 
@@ -42,10 +59,6 @@ bin/sysinit.o: src/sysinit.c \
 /usr/arm-none-eabi/include/sys/_intsup.h:
 
 /usr/arm-none-eabi/include/sys/_stdint.h:
-
-../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/chip.h:
-
-../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/lpc_types.h:
 
 /usr/lib/gcc/arm-none-eabi/4.9.3/include/stdbool.h:
 
@@ -93,4 +106,30 @@ bin/sysinit.o: src/sysinit.c \
 
 ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/ccand_11xx.h:
 
-src/sysinit.h:
+/usr/arm-none-eabi/include/string.h:
+
+/usr/arm-none-eabi/include/_ansi.h:
+
+/usr/arm-none-eabi/include/newlib.h:
+
+/usr/arm-none-eabi/include/sys/config.h:
+
+/usr/arm-none-eabi/include/machine/ieeefp.h:
+
+/usr/arm-none-eabi/include/sys/reent.h:
+
+/usr/arm-none-eabi/include/_ansi.h:
+
+/usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h:
+
+/usr/arm-none-eabi/include/sys/_types.h:
+
+/usr/arm-none-eabi/include/machine/_types.h:
+
+/usr/arm-none-eabi/include/sys/lock.h:
+
+/usr/arm-none-eabi/include/sys/cdefs.h:
+
+/usr/arm-none-eabi/include/sys/string.h:
+
+../../lpc11cx4-library/evt_lib/inc/can.h:

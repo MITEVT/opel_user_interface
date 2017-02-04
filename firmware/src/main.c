@@ -41,42 +41,7 @@ void _delay(uint32_t ms) {
 
 //inline static void car_status(void){}
 // -------------------------------------------------------------
-// CAN Driver Callback Functions
 
-/*	CAN receive callback */
-/*	Function is executed by the Callback handler after
-    a CAN message has been received */
-void CAN_rx(uint8_t msg_obj_num) {
-	// LED_On();
-	/* Determine which CAN message has been received */
-	msg_obj.msgobj = msg_obj_num;
-	/* Now load up the msg_obj structure with the CAN message */
-	LPC_CCAN_API->can_receive(&msg_obj);
-	if (msg_obj_num == 1) {
-		RingBuffer_Insert(&can_rx_buffer, &msg_obj);
-	}
-}
-
-/*	CAN transmit callback */
-/*	Function is executed by the Callback handler after
-    a CAN message has been transmitted */
-void CAN_tx(uint8_t msg_obj_num) {
-	msg_obj_num = msg_obj_num;
-}
-
-/*	CAN error callback */
-/*	Function is executed by the Callback handler after
-    an error has occurred on the CAN bus */
-void CAN_error(uint32_t error_info) {
-	can_error_info = error_info;
-	can_error_flag = true;
-}
-
-// -------------------------------------------------------------
-// Interrupt Service Routines
-
-
-// -------------------------------------------------------------
 // Main Program Loop
 
 int main(void)
@@ -85,7 +50,7 @@ int main(void)
 	//---------------
 	// Initialize UART Communication
 	Board_UART_Init(UART_BAUD_RATE);
-	//Board_UART_Println("Started up");
+	Board_UART_Println("Started up");
 
 	//---------------
 	// Initialize SysTick Timer to generate millisecond count
@@ -97,8 +62,8 @@ int main(void)
 
 	//---------------
 	// Initialize GPIO and LED as output
-	Board_LEDs_Init();
-	Board_LED_On(LED0);
+	Board_LEDs_Init(2,10);
+	LED_On(2,10);
 
 	//Initialize SSP
 //	Board_SPI_Init();
@@ -117,11 +82,7 @@ int main(void)
 	//---------------
 	// Initialize CAN  and CAN Ring Buffer
 
-	RingBuffer_Init(&can_rx_buffer, _rx_buffer, sizeof(CCAN_MSG_OBJ_T), BUFFER_SIZE);
-	RingBuffer_Flush(&can_rx_buffer);
-
-	Board_CAN_Init(CCAN_BAUD_RATE, CAN_rx, CAN_tx, CAN_error);
-
+	CAN_Init(CCAN_BAUD_RATE);
 	// For your convenience.
 	// typedef struct CCAN_MSG_OBJ {
 	// 	uint32_t  mode_id;
@@ -179,7 +140,7 @@ int main(void)
 	//		car_status()
 			error_flag = false;
 		}
-		if(lastPrint < msTicks-1000){
+/*		if(lastPrint < msTicks-1000){
 			Board_UART_Println("Sending CAN with ID: 0x7F5");
 			msg_obj.msgobj = 2;
 			msg_obj.mode_id = 0x7F5;
@@ -187,29 +148,30 @@ int main(void)
 			msg_obj.data_16[0] = 1;
 			LPC_CCAN_API->can_transmit(&msg_obj);	
 		}
-//		if(lastPrint < msTicks-1000){
-//			lastPrint = msTicks;
-//		car_status();
-//		}
-		if (send) {
-			if (!RingBuffer_IsEmpty(&can_rx_buffer)) {
-				CCAN_MSG_OBJ_T temp_msg;
-				RingBuffer_Pop(&can_rx_buffer, &temp_msg);
-				Board_UART_PrintNum(temp_msg.mode_id,16,true);
-				int count = temp_msg.dlc;
-				int x = 0;
-				while (x<count){
-					Board_UART_PrintNum(temp_msg.data[x],16,true);
-					x++;
-				}
-			}	
+		if(lastPrint < msTicks-1000){
+			lastPrint = msTicks;
+			car_status();
+		}*/
+		if (!RingBuffer_IsEmpty(&can_rx_buffer)) {
+			CCAN_MSG_OBJ_T temp_msg;
+			CAN_Receive(temp_msg);
+			Board_UART_Print("Received Message ID: 0x");
+			Board_UART_PrintNum(temp_msg.mode_id,16,true);
+			Board_UART_PrintNum(temp_msg.data[0],16,true);
+			Board_UART_PrintNum(temp_msg.data[1],16,true);	
+/*			int count = temp_msg.dlc;
+			int x = 0;
+			while (x<count){
+				Board_UART_PrintNum(temp_msg.data[x],16,true);
+				x++;
+			}*/
+				
 		}
 
 		if (can_error_flag) {
 			can_error_flag = false;
 			Board_UART_Print("CAN Error: 0b");
-			itoa(can_error_info, str, 2);
-			Board_UART_Println(str);
+			Board_UART_PrintNum(can_error_info,2,true);
 		}
 
 		uint8_t count;
