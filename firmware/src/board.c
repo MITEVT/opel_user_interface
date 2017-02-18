@@ -26,9 +26,9 @@ int8_t Board_SysTick_Init(void) {
 	return (SysTick_Config (SystemCoreClock / 1000));
 }
 
-void Board_LEDs_Init(int port,int pin) {
+void Board_LEDs_Init() {
 	Chip_GPIO_Init(LPC_GPIO);
-	Chip_GPIO_WriteDirBit(LPC_GPIO, port,pin, true);
+	Chip_GPIO_WriteDirBit(LPC_GPIO,LED0, true);
 }
 void LED_On(int port,int pin) {
 	Chip_GPIO_SetPinState(LPC_GPIO, port,pin,true);

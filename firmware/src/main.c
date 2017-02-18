@@ -1,4 +1,5 @@
 #include "board.h"
+#include "can.h"
 
 // -------------------------------------------------------------
 // Macro Definitions
@@ -14,6 +15,7 @@
 extern volatile uint32_t msTicks;
 static uint32_t lastPrint;
 
+CCAN_MSG_OBJ_T rx_msg; 	
 static CCAN_MSG_OBJ_T msg_obj; 					// Message Object data structure for manipulating CAN messages
 static RINGBUFF_T can_rx_buffer;				// Ring Buffer for storing received CAN messages
 static CCAN_MSG_OBJ_T _rx_buffer[BUFFER_SIZE]; 	// Underlying array used in ring buffer
@@ -39,7 +41,17 @@ void _delay(uint32_t ms) {
 	while ((msTicks - curTicks) < ms);
 }
 
-//inline static void car_status(void){}
+static void Print_Buffer(uint8_t* buff, uint8_t buff_size) {
+    Chip_UART_SendBlocking(LPC_USART, "0x", 2);
+    uint8_t i;
+    for(i = 0; i < buff_size; i++) {
+        itoa(buff[i], str, 16);
+        if(buff[i] < 16) {
+            Chip_UART_SendBlocking(LPC_USART, "0", 1);
+        }
+        Chip_UART_SendBlocking(LPC_USART, str, 2);
+    }
+}
 // -------------------------------------------------------------
 
 // Main Program Loop
@@ -62,27 +74,13 @@ int main(void)
 
 	//---------------
 	// Initialize GPIO and LED as output
-	Board_LEDs_Init(2,10);
-	LED_On(2,10);
+	Board_LEDs_Init();
 
-	//Initialize SSP
-//	Board_SPI_Init();
-//	Board_UART_Println("SPI pins set");
-//	Chip_SSP_Init(LPC_SSP);
-//	Board_UART_Println("SSP initialized");
-//	Chip_SSP_SetBitRate(LPC_SSP, 30000);
-	
-//	Board_UART_Println("Chip SSP set up");
-//	Chip_SSP_SetFormat(LPC_SSP, SSP_DATA_BITS, SSP_FRAMEFORMAT_SPI, SSP_CLOCK_MODE0);
-//	Chip_SSP_SetMaster(LPC_SSP, SSP_MODE_TEST);
-//	Chip_SSP_Enable(LPC_SSP);
-//	Board_UART_Println("SSP Buffer set up");
-//	SSP_Buffer_Init();
-	
 	//---------------
 	// Initialize CAN  and CAN Ring Buffer
 
 	CAN_Init(CCAN_BAUD_RATE);
+
 	// For your convenience.
 	// typedef struct CCAN_MSG_OBJ {
 	// 	uint32_t  mode_id;
@@ -105,11 +103,6 @@ int main(void)
 
 	*/
 
-	msg_obj.msgobj = 1;
-	msg_obj.mode_id = 0x000;
-	msg_obj.mask = 0x000;
-	LPC_CCAN_API->config_rxmsgobj(&msg_obj);
-
 	/* [Tutorial] How do I send a CAN Message?
 
 		There are 32 Message Objects in the CAN Peripherals Message RAM.
@@ -129,105 +122,68 @@ int main(void)
 		LPC_CCAN_API->can_transmit(&msg_obj);
 
 	*/
+	uint32_t ret;
+	uint32_t reset_can_peripheral_time;
+	const uint32_t can_error_delay = 5000;
+	bool reset_can_peripheral = false;
 	can_error_flag = false;
 	can_error_info = 0;
-	bool error_flag = false;
-	bool send = true;
-	uint32_t lastPrint = msTicks;
-	
+
 	while (1) {
-		if(error_flag){
-	//		car_status()
-			error_flag = false;
-		}
-/*		if(lastPrint < msTicks-1000){
-			Board_UART_Println("Sending CAN with ID: 0x7F5");
-			msg_obj.msgobj = 2;
-			msg_obj.mode_id = 0x7F5;
-			msg_obj.dlc = 1;
-			msg_obj.data_16[0] = 1;
-			LPC_CCAN_API->can_transmit(&msg_obj);	
-		}
-		if(lastPrint < msTicks-1000){
+		uint8_t heartbeat[1];
+		
+            // transmit a message!
+		if (lastPrint < msTicks-1000) {
+			heartbeat[0] = 1;
+			CAN_Transmit(0x7F5, heartbeat, 1);
 			lastPrint = msTicks;
-			car_status();
-		}*/
-		if (!RingBuffer_IsEmpty(&can_rx_buffer)) {
-			CCAN_MSG_OBJ_T temp_msg;
-			CAN_Receive(temp_msg);
-			Board_UART_Print("Received Message ID: 0x");
-			Board_UART_PrintNum(temp_msg.mode_id,16,true);
-			Board_UART_PrintNum(temp_msg.data[0],16,true);
-			Board_UART_PrintNum(temp_msg.data[1],16,true);	
-/*			int count = temp_msg.dlc;
-			int x = 0;
-			while (x<count){
-				Board_UART_PrintNum(temp_msg.data[x],16,true);
-				x++;
-			}*/
-				
 		}
 
-		if (can_error_flag) {
-			can_error_flag = false;
-			Board_UART_Print("CAN Error: 0b");
-			Board_UART_PrintNum(can_error_info,2,true);
+		if(reset_can_peripheral && msTicks > reset_can_peripheral_time) {
+		    Board_UART_Println("Attempting to reset CAN peripheral...");
+		    CAN_ResetPeripheral();
+		    CAN_Init(CCAN_BAUD_RATE);
+		    Board_UART_Println("Reset CAN peripheral. ");
+		    reset_can_peripheral = false;
 		}
 
+
+            // recieve message if there is a message
+		    ret = CAN_Receive(&rx_msg);
+		    if(ret == NO_RX_CAN_MESSAGE) {
+//		        Board_UART_Println("No CAN message received...");
+		    } else if(ret == NO_CAN_ERROR) {
+		        Board_UART_Print("Recieved data ");
+		        Print_Buffer(rx_msg.data, rx_msg.dlc);
+		        Board_UART_Print(" from ");
+		        Board_UART_PrintNum(rx_msg.mode_id,16,true);
+		    } else {
+		        Board_UART_Print("CAN Error: ");
+		        Board_UART_PrintNum(ret, 2,true);
+
+		        Board_UART_Print("Will attempt to reset peripheral in ");
+		        Board_UART_PrintNum(can_error_delay/1000,10,false);
+		        Board_UART_Println(" seconds.");
+		        reset_can_peripheral = true;
+		        reset_can_peripheral_time = msTicks + can_error_delay;
+		    }
 		uint8_t count;
-
-		if ((count = Board_UART_Read(uart_rx_buffer, BUFFER_SIZE)) != 0) {
-			//Board_UART_SendBlocking(uart_rx_buffer, count); // Echo user input
+		uint8_t data[1];
+        
+		if ((count = Chip_UART_Read(LPC_USART, uart_rx_buffer, BUFFER_SIZE)) != 0) {
 			switch (uart_rx_buffer[0]) {
-				case 'p':
-					Board_UART_Println("Sending CAN with ID: 0x305");
-					msg_obj.msgobj = 2;
-					msg_obj.mode_id = 0x305;
-					msg_obj.dlc = 5;
-					msg_obj.data_16[0] = 0x00;
-					msg_obj.data_16[1] = 0x01;
-					msg_obj.data_16[2] = 0x00;
-					msg_obj.data_16[3] = 0x01;
-					LPC_CCAN_API->can_transmit(&msg_obj);
-					break;
-				case 'm':
-					Board_UART_Println("Sending CAN with ID: 0x705");
-					msg_obj.msgobj = 2;
-					msg_obj.mode_id = 0x705;
-					msg_obj.dlc = 7;
-					msg_obj.data_16[0] = 0x01;
-					msg_obj.data_16[1] = 0x13;
-					msg_obj.data_16[2] = 0x0111;
-					msg_obj.data_16[3] = 0x65;
-					LPC_CCAN_API->can_transmit(&msg_obj);
-					break;
-				case 'v':
-					Board_UART_Println("Sending CAN with ID: 0x301");
-					msg_obj.msgobj = 2;
-					msg_obj.mode_id = 0x301;
-					msg_obj.dlc = 3;
-					msg_obj.data_16[0] = 0x31;
-					msg_obj.data_16[1] = 0x00;
-					msg_obj.data_16[2] = 0x00;
-					LPC_CCAN_API->can_transmit(&msg_obj);
-					break;
-				case 'x':
-					Board_UART_Println("Sending CAN with ID: 0x505");
-					msg_obj.msgobj = 2;
-					msg_obj.mode_id = 0x505;
-					msg_obj.dlc = 4;
-					msg_obj.data_16[0] = 0x0020;
-					msg_obj.data_16[1] = 0x0F00;
-					LPC_CCAN_API->can_transmit(&msg_obj);
-					break;
-				case 'g':
-					Board_UART_PrintNum(0xFFF, 16, true);
-					break;
-				case 's':	//receive from RaspberryPi
-					send = !send;
+				case 'a':
+					Board_UART_Println("Sending CAN with ID: 0x600");
+					data[0] = 0xAA;
+					ret = CAN_Transmit(0x600, data, 1);
+					    if(ret != NO_CAN_ERROR) {
+						Board_UART_Print("CAN Error: ");
+						Board_UART_PrintNum(ret, 2,true);
+
+					    }
 					break;
 				default:
-					//Board_UART_Println("Invalid Command");
+					Board_UART_Println("Invalid Command");
 					break;
 			}
 		}
