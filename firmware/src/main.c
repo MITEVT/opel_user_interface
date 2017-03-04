@@ -131,10 +131,10 @@ int main(void)
 
 	while (1) {
 		uint8_t heartbeat[1];
+		heartbeat[0]=1;
 		
             // transmit a message!
 		if (lastPrint < msTicks-1000) {
-			heartbeat[0] = 1;
 			CAN_Transmit(0x7F5, heartbeat, 1);
 			lastPrint = msTicks;
 		}
@@ -183,7 +183,7 @@ int main(void)
 					    }
 					break;
 				default:
-					Board_UART_Println("Invalid Command");
+					//Board_UART_Println("Invalid Command");
 					break;
 			}
 		}

@@ -55,13 +55,12 @@ tmp_msg_obj         0x18              bin/can.o
 _int_pin            0x1               bin/mcp2515.o
 _tx_buffer          0xc0              bin/can.o
 rx_msg              0x18              bin/main.o
-_baud               0x4               bin/lc1024.o
 _rx_buffer          0xc0              bin/can.o
 TicksPerMS          0x4               bin/sysinit.o
-_cs_pin             0x1               bin/lc1024.o
+_cs_pin             0x1               bin/mcp2515.o
 msTicks             0x4               bin/board.o
 _int_gpio           0x1               bin/mcp2515.o
-_cs_gpio            0x1               bin/lc1024.o
+_cs_gpio            0x1               bin/mcp2515.o
 msg_obj             0x18              bin/can.o
 
 Discarded input sections
@@ -1473,6 +1472,8 @@ Discarded input sections
                 0x00000000       0x58 bin/brusa.o
  .text.Brusa_DecodeStatus
                 0x00000000       0x54 bin/brusa.o
+ .text.Brusa_CheckOn
+                0x00000000        0xc bin/brusa.o
  .text.Brusa_DecodeActI
                 0x00000000       0x40 bin/brusa.o
  .text.Brusa_DecodeActII
@@ -1482,15 +1483,15 @@ Discarded input sections
  .text.Brusa_DecodeErr
                 0x00000000       0x2c bin/brusa.o
  .text.Brusa_CheckErr
-                0x00000000       0x30 bin/brusa.o
+                0x00000000       0x28 bin/brusa.o
  .text.Brusa_Decode
                 0x00000000       0xb4 bin/brusa.o
- .debug_info    0x00000000      0x6dc bin/brusa.o
+ .debug_info    0x00000000      0x705 bin/brusa.o
  .debug_abbrev  0x00000000      0x1eb bin/brusa.o
- .debug_loc     0x00000000      0x421 bin/brusa.o
+ .debug_loc     0x00000000      0x431 bin/brusa.o
  .debug_aranges
-                0x00000000       0x58 bin/brusa.o
- .debug_ranges  0x00000000       0x80 bin/brusa.o
+                0x00000000       0x60 bin/brusa.o
+ .debug_ranges  0x00000000       0x88 bin/brusa.o
  .debug_macro   0x00000000      0x16f bin/brusa.o
  .debug_macro   0x00000000      0x826 bin/brusa.o
  .debug_macro   0x00000000       0x22 bin/brusa.o
@@ -1519,10 +1520,10 @@ Discarded input sections
  .debug_macro   0x00000000      0x21c bin/brusa.o
  .debug_macro   0x00000000      0x129 bin/brusa.o
  .debug_macro   0x00000000      0x11d bin/brusa.o
- .debug_line    0x00000000      0x416 bin/brusa.o
- .debug_str     0x00000000     0x7a9c bin/brusa.o
+ .debug_line    0x00000000      0x41a bin/brusa.o
+ .debug_str     0x00000000     0x7aaa bin/brusa.o
  .comment       0x00000000       0x71 bin/brusa.o
- .debug_frame   0x00000000       0xd4 bin/brusa.o
+ .debug_frame   0x00000000       0xd8 bin/brusa.o
  .ARM.attributes
                 0x00000000       0x31 bin/brusa.o
  .group         0x00000000        0x8 bin/can.o
@@ -1666,21 +1667,24 @@ Discarded input sections
  .text.LC1024_WriteDisable
                 0x00000000       0x68 bin/lc1024.o
  .text.LC1024_ReadMem
-                0x00000000       0x80 bin/lc1024.o
+                0x00000000       0x9c bin/lc1024.o
  .text.LC1024_WriteEnable
                 0x00000000       0x68 bin/lc1024.o
  .text.LC1024_WriteMem
-                0x00000000       0x98 bin/lc1024.o
- .bss.Tx_Buf    0x00000000        0xc bin/lc1024.o
+                0x00000000       0xa0 bin/lc1024.o
+ .bss._cs_pin   0x00000000        0x1 bin/lc1024.o
+ .bss.Tx_Buf    0x00000000       0x50 bin/lc1024.o
  .bss.xf_setup  0x00000000       0x14 bin/lc1024.o
+ .bss._cs_gpio  0x00000000        0x1 bin/lc1024.o
+ .bss._baud     0x00000000        0x4 bin/lc1024.o
  .bss._pSSP     0x00000000        0x4 bin/lc1024.o
- .debug_info    0x00000000      0xc7e bin/lc1024.o
- .debug_abbrev  0x00000000      0x2d7 bin/lc1024.o
- .debug_loc     0x00000000      0x619 bin/lc1024.o
+ .debug_info    0x00000000      0xced bin/lc1024.o
+ .debug_abbrev  0x00000000      0x2d4 bin/lc1024.o
+ .debug_loc     0x00000000      0x59d bin/lc1024.o
  .debug_aranges
                 0x00000000       0x50 bin/lc1024.o
- .debug_ranges  0x00000000      0x1e0 bin/lc1024.o
- .debug_macro   0x00000000      0x217 bin/lc1024.o
+ .debug_ranges  0x00000000      0x1c0 bin/lc1024.o
+ .debug_macro   0x00000000      0x21d bin/lc1024.o
  .debug_macro   0x00000000      0x826 bin/lc1024.o
  .debug_macro   0x00000000       0x22 bin/lc1024.o
  .debug_macro   0x00000000       0x44 bin/lc1024.o
@@ -1707,7 +1711,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x7c bin/lc1024.o
  .debug_macro   0x00000000      0x21c bin/lc1024.o
  .debug_macro   0x00000000      0x129 bin/lc1024.o
- .debug_macro   0x00000000       0x28 bin/lc1024.o
+ .debug_macro   0x00000000       0x22 bin/lc1024.o
  .debug_macro   0x00000000       0x58 bin/lc1024.o
  .debug_macro   0x00000000       0x35 bin/lc1024.o
  .debug_macro   0x00000000       0x9c bin/lc1024.o
@@ -1719,13 +1723,12 @@ Discarded input sections
  .debug_macro   0x00000000      0x29d bin/lc1024.o
  .debug_macro   0x00000000       0x10 bin/lc1024.o
  .debug_macro   0x00000000       0x35 bin/lc1024.o
- .debug_line    0x00000000      0x5c6 bin/lc1024.o
- .debug_str     0x00000000     0x9db2 bin/lc1024.o
+ .debug_line    0x00000000      0x59d bin/lc1024.o
+ .debug_str     0x00000000     0x9db9 bin/lc1024.o
  .comment       0x00000000       0x71 bin/lc1024.o
  .debug_frame   0x00000000      0x100 bin/lc1024.o
  .ARM.attributes
                 0x00000000       0x31 bin/lc1024.o
- COMMON         0x00000000        0x6 bin/lc1024.o
  .group         0x00000000        0x8 bin/ltc6804.o
  .group         0x00000000        0x8 bin/ltc6804.o
  .group         0x00000000        0x8 bin/ltc6804.o
@@ -1769,7 +1772,7 @@ Discarded input sections
  .bss           0x00000000        0x0 bin/ltc6804.o
  .text.divu10   0x00000000       0x24 bin/ltc6804.o
  .text._set_balance_states
-                0x00000000       0xc0 bin/ltc6804.o
+                0x00000000       0xdc bin/ltc6804.o
  .text.LTC6804_UpdateBalanceStates
                 0x00000000       0xa4 bin/ltc6804.o
  .text._wake    0x00000000       0xbc bin/ltc6804.o
@@ -1811,10 +1814,10 @@ Discarded input sections
                 0x00000000        0x8 bin/ltc6804.o
  .debug_info    0x00000000     0x1a9b bin/ltc6804.o
  .debug_abbrev  0x00000000      0x3ed bin/ltc6804.o
- .debug_loc     0x00000000     0x22c8 bin/ltc6804.o
+ .debug_loc     0x00000000     0x22b2 bin/ltc6804.o
  .debug_aranges
                 0x00000000       0xa0 bin/ltc6804.o
- .debug_ranges  0x00000000      0x2f8 bin/ltc6804.o
+ .debug_ranges  0x00000000      0x2f0 bin/ltc6804.o
  .debug_macro   0x00000000      0x236 bin/ltc6804.o
  .debug_macro   0x00000000      0x826 bin/ltc6804.o
  .debug_macro   0x00000000       0x22 bin/ltc6804.o
@@ -1854,7 +1857,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x10 bin/ltc6804.o
  .debug_macro   0x00000000       0x35 bin/ltc6804.o
  .debug_macro   0x00000000      0x124 bin/ltc6804.o
- .debug_line    0x00000000      0x9de bin/ltc6804.o
+ .debug_line    0x00000000      0x9e4 bin/ltc6804.o
  .debug_str     0x00000000     0xa2e9 bin/ltc6804.o
  .comment       0x00000000       0x71 bin/ltc6804.o
  .debug_frame   0x00000000      0x2c0 bin/ltc6804.o
@@ -1961,7 +1964,7 @@ Discarded input sections
  .debug_frame   0x00000000      0x200 bin/mcp2515.o
  .ARM.attributes
                 0x00000000       0x31 bin/mcp2515.o
- COMMON         0x00000000        0x2 bin/mcp2515.o
+ COMMON         0x00000000        0x4 bin/mcp2515.o
  .group         0x00000000        0x8 bin/util.o
  .group         0x00000000        0x8 bin/util.o
  .group         0x00000000        0x8 bin/util.o
@@ -2393,7 +2396,7 @@ LOAD /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6
 LOAD /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libc.a
 END GROUP
 
-.text           0x00000000      0xdc8
+.text           0x00000000      0xda4
  *(.isr_vector)
  .isr_vector    0x00000000       0xe0 bin/startup_LPC11xx.o
                 0x00000000                __isr_vector
@@ -2507,28 +2510,28 @@ END GROUP
                 0x000006b0       0x2c bin/board.o
                 0x000006b0                Board_UART_PrintNum
  .text.startup.main
-                0x000006dc      0x21c bin/main.o
+                0x000006dc      0x208 bin/main.o
                 0x000006dc                main
  .text.SystemInit
-                0x000008f8       0x7c bin/sysinit.o
-                0x000008f8                SystemInit
- .text          0x00000974      0x120 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
-                0x00000974                __udivsi3
-                0x00000974                __aeabi_uidiv
-                0x00000a80                __aeabi_uidivmod
- .text          0x00000a94        0x4 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
-                0x00000a94                __aeabi_ldiv0
-                0x00000a94                __aeabi_idiv0
- .text.__itoa   0x00000a98       0x30 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
-                0x00000a98                __itoa
- .text.itoa     0x00000ac8        0x8 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
-                0x00000ac8                itoa
- .text.memcpy   0x00000ad0       0x7c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
-                0x00000ad0                memcpy
- .text.strlen   0x00000b4c       0x68 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
-                0x00000b4c                strlen
- .text.__utoa   0x00000bb4       0x8c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
-                0x00000bb4                __utoa
+                0x000008e4       0x7c bin/sysinit.o
+                0x000008e4                SystemInit
+ .text          0x00000960      0x120 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
+                0x00000960                __udivsi3
+                0x00000960                __aeabi_uidiv
+                0x00000a6c                __aeabi_uidivmod
+ .text          0x00000a80        0x4 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
+                0x00000a80                __aeabi_ldiv0
+                0x00000a80                __aeabi_idiv0
+ .text.__itoa   0x00000a84       0x30 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
+                0x00000a84                __itoa
+ .text.itoa     0x00000ab4        0x8 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
+                0x00000ab4                itoa
+ .text.memcpy   0x00000abc       0x7c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
+                0x00000abc                memcpy
+ .text.strlen   0x00000b38       0x68 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-strlen.o)
+                0x00000b38                strlen
+ .text.__utoa   0x00000ba0       0x8c /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
+                0x00000ba0                __utoa
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -2543,51 +2546,52 @@ END GROUP
  *(.dtors)
  *(.rodata*)
  .rodata.wdtOSCRate
-                0x00000c40       0x40 bin/clock_11xx.o
- .rodata        0x00000c80       0x20 bin/can.o
+                0x00000c2c       0x40 bin/clock_11xx.o
+ .rodata        0x00000c6c       0x20 bin/can.o
  .rodata.OscRateIn
-                0x00000ca0        0x4 bin/board.o
-                0x00000ca0                OscRateIn
+                0x00000c8c        0x4 bin/board.o
+                0x00000c8c                OscRateIn
  .rodata.str1.4
-                0x00000ca4        0x3 bin/board.o
- *fill*         0x00000ca7        0x1 
+                0x00000c90        0x3 bin/board.o
+ *fill*         0x00000c93        0x1 
  .rodata.str1.4
-                0x00000ca8       0xf8 bin/main.o
+                0x00000c94       0xe7 bin/main.o
+ *fill*         0x00000d7b        0x1 
  .rodata.str1.4
-                0x00000da0       0x28 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
+                0x00000d7c       0x28 /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
                                  0x25 (size before relaxing)
  *(.eh_frame*)
 
-.glue_7         0x00000dc8        0x0
+.glue_7         0x00000da4        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x00000dc8        0x0
+.glue_7t        0x00000da4        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x00000dc8        0x0
+.vfp11_veneer   0x00000da4        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x00000dc8        0x0
+.v4_bx          0x00000da4        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x00000dc8        0x0
+.iplt           0x00000da4        0x0
  .iplt          0x00000000        0x0 bin/startup_LPC11xx.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x00000dc8                __exidx_start = .
+                0x00000da4                __exidx_start = .
 
-.ARM.exidx      0x00000dc8        0x8
+.ARM.exidx      0x00000da4        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
  .ARM.exidx.isr_vector
-                0x00000dc8        0x8 bin/startup_LPC11xx.o
-                0x00000dd0                __exidx_end = .
-                0x00000dd0                __etext = .
+                0x00000da4        0x8 bin/startup_LPC11xx.o
+                0x00000dac                __exidx_end = .
+                0x00000dac                __etext = .
 
-.rel.dyn        0x00000dd0        0x0
+.rel.dyn        0x00000dac        0x0
  .rel.iplt      0x00000000        0x0 bin/startup_LPC11xx.o
 
-.data           0x10000100        0x0 load address 0x00000dd0
+.data           0x10000100        0x0 load address 0x00000dac
                 0x10000100                __data_start__ = .
  *(vtable)
  *(.data*)
@@ -2710,7 +2714,7 @@ OUTPUT(bin/opel_user_interface.elf elf32-littlearm)
  .comment       0x00000000       0x71 bin/main.o
  .comment       0x00000000       0x71 bin/sysinit.o
 
-.debug_line     0x00000000     0x272d
+.debug_line     0x00000000     0x2728
  .debug_line    0x00000000       0x94 bin/startup_LPC11xx.o
  .debug_line    0x00000094      0x2eb bin/chip_11xx.o
  .debug_line    0x0000037f      0x40a bin/clock_11xx.o
@@ -2719,10 +2723,10 @@ OUTPUT(bin/opel_user_interface.elf elf32-littlearm)
  .debug_line    0x00000eb2      0x628 bin/uart_11xx.o
  .debug_line    0x000014da      0x5b8 bin/can.o
  .debug_line    0x00001a92      0x5a2 bin/board.o
- .debug_line    0x00002034      0x3fa bin/main.o
- .debug_line    0x0000242e      0x2ff bin/sysinit.o
+ .debug_line    0x00002034      0x3f5 bin/main.o
+ .debug_line    0x00002429      0x2ff bin/sysinit.o
 
-.debug_info     0x00000000     0x7207
+.debug_info     0x00000000     0x71e7
  .debug_info    0x00000000       0x93 bin/startup_LPC11xx.o
  .debug_info    0x00000093       0xe7 bin/chip_11xx.o
  .debug_info    0x0000017a      0x978 bin/clock_11xx.o
@@ -2731,8 +2735,8 @@ OUTPUT(bin/opel_user_interface.elf elf32-littlearm)
  .debug_info    0x00001bf3     0x13a4 bin/uart_11xx.o
  .debug_info    0x00002f97     0x182a bin/can.o
  .debug_info    0x000047c1     0x1af5 bin/board.o
- .debug_info    0x000062b6      0xa3b bin/main.o
- .debug_info    0x00006cf1      0x516 bin/sysinit.o
+ .debug_info    0x000062b6      0xa1b bin/main.o
+ .debug_info    0x00006cd1      0x516 bin/sysinit.o
 
 .debug_abbrev   0x00000000     0x16a1
  .debug_abbrev  0x00000000       0x12 bin/startup_LPC11xx.o
@@ -2874,6 +2878,7 @@ Board_UART_Println                                bin/board.o
 Board_UART_Read                                   bin/board.o
 Board_UART_SendBlocking                           bin/board.o
 Brusa_CheckErr                                    bin/brusa.o
+Brusa_CheckOn                                     bin/brusa.o
 Brusa_Decode                                      bin/brusa.o
 Brusa_DecodeActI                                  bin/brusa.o
 Brusa_DecodeActII                                 bin/brusa.o
@@ -3179,15 +3184,12 @@ __udivdi3                                         /usr/bin/../lib/gcc/arm-none-e
 __udivsi3                                         /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
 __utoa                                            /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-utoa.o)
                                                   /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-itoa.o)
-_baud                                             bin/lc1024.o
 _calculate_pec                                    bin/ltc6804.o
 _check_owt                                        bin/ltc6804.o
 _check_st_results                                 bin/ltc6804.o
 _command                                          bin/ltc6804.o
 _cs_gpio                                          bin/mcp2515.o
-                                                  bin/lc1024.o
 _cs_pin                                           bin/mcp2515.o
-                                                  bin/lc1024.o
 _delay                                            bin/main.o
 _int_gpio                                         bin/mcp2515.o
 _int_pin                                          bin/mcp2515.o
@@ -3208,6 +3210,7 @@ main                                              bin/main.o
                                                   bin/startup_LPC11xx.o
 memcpy                                            /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memcpy.o)
                                                   bin/ltc6804.o
+                                                  bin/lc1024.o
                                                   bin/ring_buffer.o
 memset                                            /usr/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-memset.o)
                                                   bin/ltc6804.o

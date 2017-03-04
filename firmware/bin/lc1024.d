@@ -1,4 +1,5 @@
 bin/lc1024.o: ../../lpc11cx4-library/evt_lib/src/lc1024.c \
+ ../../lpc11cx4-library/evt_lib/inc/lc1024.h \
  ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/chip.h \
  ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/lpc_types.h \
  /usr/lib/gcc/arm-none-eabi/4.9.3/include/stdint.h \
@@ -30,7 +31,6 @@ bin/lc1024.o: ../../lpc11cx4-library/evt_lib/src/lc1024.c \
  ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/gpio_11xx_2.h \
  ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/i2c_11xx.h \
  ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/ccand_11xx.h \
- ../../lpc11cx4-library/evt_lib/inc/lc1024.h \
  /usr/arm-none-eabi/include/string.h /usr/arm-none-eabi/include/_ansi.h \
  /usr/arm-none-eabi/include/newlib.h \
  /usr/arm-none-eabi/include/sys/config.h \
@@ -43,6 +43,8 @@ bin/lc1024.o: ../../lpc11cx4-library/evt_lib/src/lc1024.c \
  /usr/arm-none-eabi/include/sys/lock.h \
  /usr/arm-none-eabi/include/sys/cdefs.h \
  /usr/arm-none-eabi/include/sys/string.h
+
+../../lpc11cx4-library/evt_lib/inc/lc1024.h:
 
 ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/chip.h:
 
@@ -105,8 +107,6 @@ bin/lc1024.o: ../../lpc11cx4-library/evt_lib/src/lc1024.c \
 ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/i2c_11xx.h:
 
 ../../lpc11cx4-library/lpc_chip_11cxx_lib/inc/ccand_11xx.h:
-
-../../lpc11cx4-library/evt_lib/inc/lc1024.h:
 
 /usr/arm-none-eabi/include/string.h:
 
